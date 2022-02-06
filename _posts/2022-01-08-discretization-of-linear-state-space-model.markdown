@@ -2,7 +2,7 @@
 layout: post
 title:  "Discretization of linear state space model"
 date:   2022-01-08 00:00:00 +0000
-categories: jekyll update
+categories: kalman-filter matlab
 ---
 
 {% highlight matlab %}
