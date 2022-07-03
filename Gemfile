@@ -20,7 +20,6 @@ gem "minima", "~> 2.0"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.6"
-  gem "jekyll-google_search_console_verification_file", "~> 1.1
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
