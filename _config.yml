@@ -25,6 +25,7 @@ github_username:  sebdi
 markdown: kramdown
 theme: minima
 plugins:
+  - jekyll-feed
   - jekyll-google_search_console_verification_file
 google_search_console:
   verification_file_code: 106f72cb115a2161
