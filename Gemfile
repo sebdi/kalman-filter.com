@@ -32,3 +32,5 @@ end
 # Performance-booster for watching directories on Windows
 gem "wdm", "~> 0.1.0", :install_if => Gem.win_platform?
 
+
+gem "jekyll-google_search_console_verification_file", "~> 1.1", :group => :jekyll_plugins
