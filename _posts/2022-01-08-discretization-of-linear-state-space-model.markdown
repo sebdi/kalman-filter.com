@@ -15,8 +15,14 @@ For the zero-order hold (ZOH) discretization, the following lines give the vecto
 
 In general, it is recommended to simplify the matrices in continuous time as much as possible before performing the discretization.
 
+<h3>Formulas based on ZOH discretization</h3>
+
+\\[ \mathbf{A}_d = e^{\mathbf{A} T_s} \\]
+
+
+<h3>Computation in MATLAB</h3>
 {% highlight matlab %}
-Ad = expm(Ts*A);
+Ad = expm(A*Ts);
 
 syms tau
 Bd = vpa(Ad*int(expm(-A*tau)*B,tau,[0 0.1]));
@@ -25,16 +31,19 @@ syms nu
 Gd = vpa(int(expm(A*tau)*G,tau,[0 Ts]));
 {% endhighlight %}
 
+<h3>An elegant way</h3>
+
 A particularly elegant way is to construct a matrix that yields the same result as described above.
 
+\\[ e^{\begin{bmatrix}\mathbf{A} & \mathbf{B}\\\\ \mathbf{0} & \mathbf{0}\end{bmatrix} \cdot T_s} = \begin{bmatrix}\mathbf{A}_d & \mathbf{B}_d \\\\ \mathbf{0} & \mathbf{I}\end{bmatrix} \\]
 
-\( x = y^2  \)
+For exampel for a system with \\( \mathbf{A}_{3 \times 3}, \mathbf{B}\_{1 \times 3} \\)
 
-\($$ x = y ^2  $$\)
-
-\\( 1/x^{2} \\)
-
-\\[ \frac{1}{n^{2}} \\]
+{% highlight matlab %}
+big=expm([A B;zeros(1,4)]*Ts);
+Ad=big(1:3,1:3);
+bd=big(1:3,4);
+{% endhighlight %}
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll

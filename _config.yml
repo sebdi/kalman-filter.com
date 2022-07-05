@@ -18,11 +18,12 @@ email: s.dingler+kf@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   This page provides a loose collection of kalman filter related topics
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://kalman-filter.com" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  sebdi
 
 # Build settings
 markdown: kramdown
+mathjax: true
 theme: minima
 plugins:
   - jekyll-feed
