@@ -27,8 +27,14 @@ Gd = vpa(int(expm(A*tau)*G,tau,[0 Ts]));
 
 A particularly elegant way is to construct a matrix that yields the same result as described above.
 
-$$ x = y ^2 $$
 
+\( x = y^2  \)
+
+\($$ x = y ^2  $$\)
+
+\\( 1/x^{2} \\)
+
+\\[ \frac{1}{n^{2}} \\]
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
