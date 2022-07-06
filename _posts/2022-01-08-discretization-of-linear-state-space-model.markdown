@@ -19,13 +19,20 @@ In general, it is recommended to simplify the matrices in continuous time as muc
 
 \\[ \mathbf{A}_d = e^{\mathbf{A} T_s} \\]
 
+\\[ \mathbf{B}_d = \int^{T_s}\_{0}  e^{\mathbf{A} \tau} d \tau  \mathbf{B}  \\]
+
+\\[ \mathbf{G}_d = \int^{T_s}\_{0}  e^{\mathbf{A} \tau} \mathbf{G} d \tau  \\]
+
+\\[ \mathbf{Q}_d = \int^{T_s}\_{0}  e^{\mathbf{A} \tau} \mathbf{Q} e^{\mathbf{A}^T \tau} d \tau  \\]
+
+\\[ \mathbf{R}_d = \mathbf{R} \frac{1}{T_s} \\]
 
 <h3>Computation in MATLAB</h3>
 {% highlight matlab %}
 Ad = expm(A*Ts);
 
 syms tau
-Bd = vpa(Ad*int(expm(-A*tau)*B,tau,[0 0.1]));
+Bd = vpa(Ad*int(expm(-A*tau)*B,tau,[0 Ts]));
 
 syms nu
 Gd = vpa(int(expm(A*tau)*G,tau,[0 Ts]));
