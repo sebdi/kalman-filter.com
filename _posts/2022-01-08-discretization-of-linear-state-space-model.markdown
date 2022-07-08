@@ -1,17 +1,15 @@
 ---
 layout: post
-title:  "Discretization of linear state space model"
+title:  "Discretization of linear state-space model"
 date:   2022-01-08 00:00:00 +0000
 categories: kalman-filter matlab
 ---
 
-In practice, the discretization of the equation of state is of particular importance.
+In practice, the discretization of the state-space equations is of particular importance.
 
-For systems with high degrees of freedom (>2), the determination is not particularly trivial and presents even experienced individuals with considerable challenges due to the certain algebra.
+For systems with high degrees of freedom (>2), the determination is not particularly trivial and presents even experienced individuals with considerable challenges due to the specialized algebra.
 
 The details of the derivation shall be omitted here because this is only suitable for the really interested reader and here we will deal with the very practical determination with the help of MATLAB.
-
-For the zero-order hold (ZOH) discretization, the following lines give the vectors and matrices we are looking for:
 
 In general, it is recommended to simplify the matrices in continuous time as much as possible before performing the discretization.
 
@@ -32,7 +30,7 @@ In general, it is recommended to simplify the matrices in continuous time as muc
 Ad = expm(A*Ts);
 
 syms tau
-Bd = vpa(Ad*int(expm(-A*tau)*B,tau,[0 Ts]));
+Bd = vpa(int(expm(A*tau)*B,tau,[0 Ts]));
 
 syms nu
 Gd = vpa(int(expm(A*tau)*G,tau,[0 Ts]));
