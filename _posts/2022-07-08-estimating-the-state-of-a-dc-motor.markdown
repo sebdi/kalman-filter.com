@@ -5,46 +5,72 @@ date:   2022-07-08 00:00:00 +0000
 categories: kalman-filter matlab
 ---
 
-This applied example will focus on estimating the state of a DC motor. 
-When modeling DC motors, it is important to mention that of course nonlinear models are superior to linear ones.
+This following example will focus on estimating the angular position \\( \theta \\), angular velocity \\( \dot{\theta} \\) and armature current \\( i \\) of a DC motor. 
+When modeling DC motors, it is important to mention that certainly nonlinear models are superior to linear ones.
+However, for didactic purposes and for a lot of applications, a linear model is sufficient for the time being.
 
-The starting point for modeling a DC motor is the electronic equivalent circuit and the basic equations of the DC machine.
-An electric motor is an energy converter that converts electrical energy into kinetic energy. 
+The modeling of a DC motor is structured in two parts.
+The electrical part is modeled with the electrical equivalent circuit and the kinematics with the basic equations of a DC motor.
 
-The electronic part consists of a series connection of the resistor R and the coil L as well as the electromechanical energy converter which represents the DC motor. 
-This is controlled by a voltage source.
+<h2>Electrical system description</h2>
+The electrical part consists a resistor \\( R \\) and the coil \\( L \\) that are connected in series as well as the electromechanical energy converter \\( M \\)  which represents the DC motor. 
+The circuit is operated by the voltage source \\( U \\) .
+The following equation can be obtained using the mesh equation.
 
-The energy converter is described by the basic equations of the DC motor as follows.
-Induced voltage and the current. Motor torque and angular velocity.
+\\[ U = L \dot{i} + R i - U_e\\]
 
-Furthermore, by the approach of the total moment of inertia.
+The DC motor induces the voltage \\( U_e \\) that can be regarded linear to the angular velocity \\( U_e = k_e \dot{\theta} \\). The factor \\( k_e \\) accounts for different motor types.
 
-In the following, the state space model is derived from the described relationships.
+Since \\(  L \dot{i} \\)  is a differentiating term, we solve for the same and get the following first order differential equation
 
-For the electronic part, the following equation can be obtained using the mesh equation.
+\\[ \dot{i} = \frac{1}{L} U - \frac{R}{L} i - \frac{k_e}{L} \dot{\theta} \\]
 
-\\[ U = L \dot{i} + R i - Ue\\]
+that we can later transer to the state-space.
 
-Since L is a differentiating term, we solve for the same.
+<h2>Kinematic system description</h2>
+For the mechanical part, the energy converter is described by the approach of the total moment of inertia.
+The torque equilibrium is started at the mechanical shaft of the motor
 
-\\[ \frac{di}{dt} = \frac{1}{L} u - \frac{R}{L} i - \frac{K_e}{L} \omega \\]
+\\[ J \ddot{\theta} = m_m - m_R - m_L \. \\]
 
-For the mechanical part, the torque equilibrium is started at the mechanical shaft of the motor.
+For the motor torque there is a linear relationship to the current \\( m_m = k_T i \\) that is adjusted by the factor \\( k_T \\). 
+The friction torque \\( m_R \\) proportional to the angular velocity \\( m_R = b \dot{\theta} \\) with a coefficient \\( b \\).
+The torque \\( m_L \\) is the mechanical load torque that is \\( m_L = 0 \\), if the DC motor is operated without payload.
 
-\\[ J \dot{\omega} = m_m - m_w - m_R \\]
+\\[ J \ddot{\theta} = k_T i - b \dot{\theta} - m_L\\]
 
+Since \\( \ddot{\theta} \\) is the term with the highest differentation, we solve for the same and get the following second order differential equation
+
+\\[ \ddot{\theta} = \frac{k_T i}{J} - \frac{b}{J} \dot{\theta} - \frac{m_L}{J}  \\]
+
+
+<h2>Continous time system description</h2>
 The two upper equations can now be transferred into the state-space description.
 For this purpose, the following states are defined \\( \mathbf{x}_1 = \theta \\), \\( \mathbf{x}_2 = \dot{\theta} \\) and \\( \mathbf{x}_3 = i \\).
+Furthermore, we model that the system is only controled by the voltage supply, i.e., \\(\mathbf{u}(t) =  U \\) and the load torque is a unknown disturbance to the system with \\(\mathbf{v}(t) =  m_L \\).
+The continous state-space descriptions becomes
+
+\\[ \dot{\mathbf{x}}(t) = \mathbf{A} \mathbf{x}(t) + \mathbf{B} \mathbf{u}(t) + \mathbf{G} \mathbf{v}(t) \\]
+
+with the following matrices
 
 \\[ \mathbf{A} = \begin{bmatrix} 0 & 1 & 0 \\\\ 0 & \frac{-b}{J} & \frac{K_T}{J} \\\\ 0 & \frac{K_e}{L} & \frac{-R}{L}\end{bmatrix} \\]
 
-\\[ \mathbf{B} = \begin{bmatrix} 0 \\\\ 0 \\\\ \frac{-R}{L}\end{bmatrix} \\]
+\\[ \mathbf{B} = \begin{bmatrix} 0 \\\\ 0 \\\\ \frac{-1}{L}\end{bmatrix} \\]
 
 \\[ \mathbf{G} = \begin{bmatrix} 0 \\\\ \frac{-1}{J} \\\\ 0\end{bmatrix} \\]
 
+For the measurement equation
+
+\\[ \mathbf{y}(t) =  \mathbf{C} \mathbf{x}(t) + \mathbf{z}(t)\\]
+
+let's assume we measure the angular velocity
+
+\\[ \mathbf{C} = \begin{bmatrix} 0 & 1 & 0\end{bmatrix} \\]
+
 <h2>Discrete-time system description</h2>
 Discretization of the matrices with the variables does not yield handy formulations.
-Therefore, the discretization is done with concrete values for the variables. 
+Therefore, the discretization is done with the following parameters \\( b=0, J=3, K_T=3, K_e=3, R=0.1, L=0.1 \\). 
 One obtains
 
 \\[ \mathbf{A}_d = \begin{bmatrix} 0 & 1 & 0 \\\\ 0 & \frac{-b}{J} & \frac{K_T}{J} \\\\ 0 & \frac{K_e}{L} & \frac{-R}{L}\end{bmatrix} \\]
