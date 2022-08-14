@@ -16,7 +16,7 @@
 title: kalman-filter.com
 email: s.dingler+kf@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This page provides a loose collection of kalman filter related topics
+  A loose collection of kalman filter related topics
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://kalman-filter.com" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  sebdi
