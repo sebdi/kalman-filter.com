@@ -1,0 +1,48 @@
+---
+layout: post
+title:  "Normalized Estimation Error Squared (NEES)"
+date:   2022-08-14 00:00:00 +0000
+categories: kalman-filter matlab
+---
+
+One requirement for state estimators is consistency. 
+A state estimator is consistent if it is able to correctly indicate the quality of the estimate. 
+It should be able to do this because an increase in sample size leads to a growth in information content and the state estimate is ideally identical to the true state.
+This results from the following requirements for a state estimator:
+
+\\[ E [ \mathbf{x}(k) - \hat{\mathbf{x}}(k)  ] = E [ \tilde{\mathbf{x}}(k)  ] = 0  \\]
+
+and the condition for consistency:
+
+\\[ E [ [\mathbf{x}(k) - \hat{\mathbf{x}}(k)] [\mathbf{x}(k) - \hat{\mathbf{x}}(k)]^T ] = E [ \tilde{\mathbf{x}}(k\|k) \tilde{\mathbf{x}}(k\|k)^T  ] = \mathbf{P}(k\|k)  \\]
+
+Checking the consistency of the state estimator can be done with a NEES test.
+For this purpose, a normalization of the estimation error \\( \tilde{\mathbf{x}} \\) and the error covariance matrix \\( \mathbf{P} \\) is performed:
+
+\\[ \epsilon (k) = \tilde{\mathbf{x}}(k\|k)^T \mathbf{P}(k\|k) \tilde{\mathbf{x}}(k\|k) \\]
+
+The quantity (k) is chi-squared distributed with \\( \text{dim}( \tilde{\mathbf{x}}(k) )) = n \\) degrees of freedom. 
+Statistical significance is ensured in a simulation by averaging over N Monte Carlo test runs:
+
+\\[ NEES( \epsilon(k) ) = \overline{\epsilon} (k)  = \frac{1}{N} \sum^N_{i=1} \epsilon_i(k) \\]
+
+This is followed by a hypothesis test. 
+Under the hypothesis \\( H_0 \\) that the filter is consistent, \\( \overline{\epsilon} (k) \\) is chi-squared distributed with \\( N n \\) degrees of freedom. 
+The hypothesis \\( H_0 \\) is accepted if:
+
+\\[ \overline{\epsilon} (k) \in [r_1,r_2] \\]
+
+where the acceptance interval is chosen such that the probability that H0 is accepted is is \\( (1 - \alpha) \\) :
+
+\\[ P \\{ \overline{\epsilon} (k) \in [r_1,r_2]  \| H_0 \\} = 1 - \alpha \\]
+
+If the NEES is greater than the upper bound \\( r_2 \\), then the filter estimates the error to be lower than it is in reality.
+One cause can be a too low modeled process noise.
+If the NEES is smaller than \\( r_1 \\), then the error is estimated larger than it really is. 
+In case the filter is inefficient. 
+The process noise was chosen too large.
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
