@@ -21,13 +21,13 @@ For this purpose, a normalization of the estimation error \\( \tilde{\mathbf{x}}
 
 \\[ \epsilon (k) = \tilde{\mathbf{x}}(k\|k)^T \mathbf{P}(k\|k) \tilde{\mathbf{x}}(k\|k) \\]
 
-The quantity (k) is chi-squared distributed with \\( \text{dim}( \tilde{\mathbf{x}}(k) )) = n \\) degrees of freedom. 
+The quantity \\( \epsilon (k) \\)  is chi-squared distributed with \\( \text{dim}( \tilde{\mathbf{x}}(k) )) = n \\) degrees of freedom. 
 Statistical significance is ensured in a simulation by averaging over N Monte Carlo test runs:
 
 \\[ NEES( \epsilon(k) ) = \overline{\epsilon} (k)  = \frac{1}{N} \sum^N_{i=1} \epsilon_i(k) \\]
 
 This is followed by a hypothesis test. 
-Under the hypothesis \\( H_0 \\) that the filter is consistent, \\( \overline{\epsilon} (k) \\) is chi-squared distributed with \\( N n \\) degrees of freedom. 
+Under the hypothesis \\( H_0 \\) that the filter is consistent, \\( N \overline{\epsilon} (k) \\) is chi-squared distributed with \\( N n \\) degrees of freedom. 
 The hypothesis \\( H_0 \\) is accepted if:
 
 \\[ \overline{\epsilon} (k) \in [r_1,r_2] \\]

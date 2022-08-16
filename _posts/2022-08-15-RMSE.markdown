@@ -14,9 +14,11 @@ It is determined in a simulation of length K. The RMSE is then calculated for ea
 
 where \\( n = \text{dim}(\tilde{\mathbf{x}}(k)) \\)  is.
 The RMSE should always be calculated only for elements of a certain kind, because it is not correct to add for example velocity and acceleration. 
-If for example a velocity is chosen as state vector, then one speaks of the RMSE of the velocity. The smaller the RMSE, the better is a state estimator or fusion algorithm.
+If for example a velocity is chosen as state vector, then one speaks of the RMSE of the velocity. 
+The smaller the RMSE, the better is state estimator or fusion algorithm.
 
-If real measurement data are to be evaluated, the RMSE can only be calculated from a single run. The RMSE thus has no statistical significance. 
+If real measurement data are to be evaluated, the RMSE can only be calculated from a single run. 
+The RMSE thus has no statistical significance. 
 The RMSE can therefore alternatively be calculated via the mean estimation error:
 
 \\[ \mu_{\tilde{x}} = \frac{1}{K} \sum^K_{k=1}  \tilde{\mathbf{x}} \\]
