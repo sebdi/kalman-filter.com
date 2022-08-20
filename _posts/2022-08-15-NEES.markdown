@@ -1,8 +1,9 @@
 ---
 layout: post
 title:  "Normalized Estimation Error Squared (NEES)"
+permalink: /normalized-estimation-error-squared/
 date:   2022-08-14 00:00:00 +0000
-categories: kalman-filter matlab
+categories: kalman-filter
 ---
 
 One requirement for state estimators is consistency. 

@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  "Root Mean Squared Error (RMSE)"
+title:  "Root Mean Square Error (RMSE)"
+permalink: /root-mean-square-error/
 date:   2022-08-14 00:00:00 +0000
-categories: kalman-filter matlab
+categories: kalman-filter
 ---
 
 

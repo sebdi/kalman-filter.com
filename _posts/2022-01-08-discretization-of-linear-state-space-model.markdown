@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Discretization of linear state-space model"
+permalink: /discretization-of-linear-state-space-model/
 date:   2022-01-08 00:00:00 +0000
 categories: kalman-filter matlab
 ---
