@@ -93,6 +93,11 @@ In order to check whether the modeling of the measurement mapping allows to obse
 In this case, the rank corresponds to the number of degrees of freedom and thus the system is fully observable with the chosen measurement mapping \\( \mathbf{C}\\).
 
 <h3>Determination of the system and measurement noise</h3>
+There are different ways to determine the process noise. 
+Since here only simulative work is done, all ways would work. 
+In practice, it would be necessary to evalulate more precisely which path and which parameterization should be selected. 
+Here the variance is set to \\(  \sigma_{m_L}^2 = 2.25 \cdot 10^{-6} \\) with
+\\[ \mathbf{Q} = \begin{bmatrix} 0 & 0 & 0 & 0\\\\ 0 & 0 & 0 & 0 \\\\ 0 & 0 & \sigma^2_{m_L} & 0 \\\\ 0 & 0 & 0 & 0 \end{bmatrix} \. \\]
 For the calculation of the covariance matrix of the discrete process noise the discretization with zero-order hold is chosen
 \\[ \mathbf{Q}_d = \int^{T_s}\_{0}  e^{\mathbf{A} \tau} \mathbf{Q} e^{\mathbf{A}^T \tau} d \tau  \. \\]
 *The calculation does not provide a handy result for \\( \mathbf{Q}_d \\) therefore it is not given here.*
