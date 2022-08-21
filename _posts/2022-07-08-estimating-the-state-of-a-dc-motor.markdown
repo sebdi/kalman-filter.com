@@ -55,8 +55,6 @@ with the following matrices
 
 \\[ \mathbf{B} = \begin{bmatrix} 0 \\\\ 0 \\\\ 0 \\\\ \frac{1}{L}\end{bmatrix} \\]
 
-\\[ \mathbf{G} = \begin{bmatrix} 0 \\\\ 0 \\\\ 1 \\\\ 0\end{bmatrix} \. \\]
-
 For the measurement equation
 
 \\[ \mathbf{y}(t) =  \mathbf{C} \mathbf{x}(t) + \mathbf{v}(t)\\]
@@ -72,7 +70,7 @@ One practice is therefore to assume the change (i.e. the derivative) to be mean-
 
 <h2>Discrete-time system model</h2>
 Discretization of the matrices \\(\mathbf{A}_d\\) and \\(\mathbf{B}_d\\) does not yield handy formulations if analytical discretized.
-Therefore, the discretization is done with the following values \\( J=0.01 \\), \\(b=0.0001\\), \\(k_T=0.2\\), \\(k_e=4\\), \\(R=2.5\\), \\(L=0.0002\\), \\(\sigma_L=0.1\\) and \\(T_s=0.1\\) that are later also used for the simulation by using the known equations
+Therefore, the discretization is done with the following values \\( J=0.0001 \ kg \cdot m^2 \\), \\(b=0.0001 \ \frac{Nm}{0.5 \cdot rad} \\), \\(k_T=0.01 \ \frac{Nm}{A} \\), \\(k_e=0.03 \ V \\), \\(R=0.5 \ \Omega \\), \\(L=0.0004 \ H\\) and \\(T_s=0.1 \ s \\) that are later also used for the simulation by using the known equations
 
 \\[ \mathbf{A}_d = e^{\mathbf{A} T_s} \\]
 
