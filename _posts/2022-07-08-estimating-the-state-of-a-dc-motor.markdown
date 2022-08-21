@@ -98,7 +98,7 @@ For the calculation of the covariance matrix of the discrete process noise the d
 *The calculation does not provide a handy result for \\( \mathbf{Q}_d \\) therefore it is not given here.*
 
 The determination of the measurement noise is based on the assumption that the angular position of the dc motor is determined by an absolute encoder with a resolution of 12 bits. This results in 4096 discrete positions, where one position corresponds approximately to an interval length of 0.088 degrees. If the 3 sigma deviation is used as a measure of scatter, i.e. that in 99.73 % of all cases the measured value is within the 3 sigma interval, then this corresponds for the measurement noise in a variance of
-\\[  \sigma^2_r = 0.000225^{\circ} \. \\]
+\\[  \sigma^2_r = \frac{1}{2} \frac{2 \pi}{4096} \frac{1}{3} \approx 6.54 \cdot 10^{-8} \ \text{rad} \. \\]
 
 <h2>Implementation and results</h2>
 The following results were received by conducting a simulation in MATLAB.
@@ -108,24 +108,48 @@ To make the simulation more lively and realistic, the input voltage is set to 6 
 <img src="/assets/images/dc_motor/u.png" title="input voltage"/>
 </p>
 
-Figure 2 shows the course of the estimate of \\(x_1\\), the measurements y, and the ground truth of \\(x_1\\). 
-It can be clearly seen that the estimate is closer to the ground truth than, to the measurement \\(y\\).
+The next four figures shows the course of the estimate of \\(\mathbf{x}\\) and the ground truth of \\(\mathbf{x}\\).
+Additionally, for the first state \\(x_1\\) the measurements \\(y\\) are plotted.
+For the second state \\(x_2\\), i.e. the angular velocity \\( \dot{\theta} \\), the approximate derivative \\(y_{diff}\\) is plotted.
+Qualitative can be evaluated for all states that the estimate is very close to the true value.
 
 <p align="center">
 <img src="/assets/images/dc_motor/x1.png" title="x1"/>
 </p>
 
-The previous result was mainly qualitative, a widely used way to better evaluate the estimation error is to use a metric such as the [Root Mean Square Error (RMSE)](/root-mean-square-error/).
-Figure 3 shows the RMSE for \\( x_1\\) and the measurement. 
-It can be seen that the state estimation of the Kalman filter has a substantially lower RMSE than if the measured value were used.
+<p align="center">
+<img src="/assets/images/dc_motor/x2.png" title="x2"/>
+</p>
 
 <p align="center">
-<img src="/assets/images/dc_motor/RMSE.png" title="RMSE"/>
+<img src="/assets/images/dc_motor/x3.png" title="x3"/>
+</p>
+
+<p align="center">
+<img src="/assets/images/dc_motor/x4.png" title="x4"/>
+</p>
+
+The previous result was mainly qualitative, a widely used quantitative way is to evaluate the estimation error with a metric such as the [Root Mean Square Error (RMSE)](/root-mean-square-error/).
+The next figure shows the RMSE for \\( x_1\\) and the measurement \\(y\\). 
+It can be seen that RMSE for \\( x_1\\)  of the Kalman filter matches the RMSE of the measurement \\(y\\).
+The main reason is that the measurement noise is very low.
+
+<p align="center">
+<img src="/assets/images/dc_motor/RMSE_x1.png" title="RMSE(x1)"/>
+</p>
+
+Usually the angular velocity \\( \dot{\theta} \\) is used to control a DC motor. 
+Without a state estimator, one may be inclined to derive the measured position by approximate derivative and control to this quantity. 
+In the next figure the RMSE for the derived measurement is also shown. 
+It can be clearly seen that the RMSE spikes when the input voltage changes in a jump.
+
+<p align="center">
+<img src="/assets/images/dc_motor/RMSE_x2.png" title="RMSE(x2)"/>
 </p>
 
 As the last step, the correctness of the simulation can be confirmed by the [Normalized Estimation Error Squared (NEES)](/normalized-estimation-error-squared/). 
 Since 1000 Monte Carlo runs were performed, a 95% confidence interval \\( [3.83;4.18] \\) can be determined. 
-Figure 4 shows the result and the NEES stays within the confidence interval.
+The next figure shows the NEES that stays within the confidence interval.
 Moreover, the mean of the NEES is close to 4 which is the degree of freedom of the used state-space system.
 
 <p align="center">
