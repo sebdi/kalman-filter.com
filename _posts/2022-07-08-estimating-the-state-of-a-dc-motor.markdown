@@ -44,10 +44,10 @@ Since \\( \ddot{\theta} \\) is the term with the highest differentiation, we sol
 <h3>Combined system model</h3>
 The two upper equations can now be transferred into one state-space model.
 For this purpose, the following states are defined \\( \mathbf{x}_1 = \theta \\), \\( \mathbf{x}_2 = \dot{\theta} \\), \\( \mathbf{x}_3 = m_L \\)  and \\( \mathbf{x}_4 = i \\).
-Furthermore, we model that the system is only controled by the voltage supply, i.e., \\(\mathbf{u}(t) =  U \\) and the derivative of the load torque \\( m_L \\) is a unknown disturbance to the system with \\( \dot{\mathbf{x}}_3 = \mathbf{v}(t) \\).
+Furthermore, we model that the system is only controled by the voltage supply, i.e., \\(\mathbf{u}(t) =  U \\) and the derivative of the load torque \\( m_L \\) is a unknown disturbance to the system with \\( \dot{\mathbf{x}}_3 = \mathbf{z}(t) \\).
 The continuous state-space model becomes
 
-\\[ \dot{\mathbf{x}}(t) = \mathbf{A} \mathbf{x}(t) + \mathbf{B} \mathbf{u}(t) + \mathbf{G} \mathbf{v}(t) \\]
+\\[ \dot{\mathbf{x}}(t) = \mathbf{A} \mathbf{x}(t) + \mathbf{B} \mathbf{u}(t) + \mathbf{G} \mathbf{z}(t) \\]
 
 with the following matrices
 
@@ -59,7 +59,7 @@ with the following matrices
 
 For the measurement equation
 
-\\[ \mathbf{y}(t) =  \mathbf{C} \mathbf{x}(t) + \mathbf{z}(t)\\]
+\\[ \mathbf{y}(t) =  \mathbf{C} \mathbf{x}(t) + \mathbf{v}(t)\\]
 
 let's assume we measure the angular positions with an absolute encoder
 
@@ -67,7 +67,7 @@ let's assume we measure the angular positions with an absolute encoder
 
 *Some notes, the choice of state variables is the part of modeling and it is possible for both another choice and another order.
 When modeling the load torque \\( m_L \\), it was assumed that the load torque \\( m_L \\) is unknown and noisy.
-Sine the load torque \\( m_L \\) is not mean-free, it is not possible to set \\(  \mathbf{v}(t)  = m_L\\).
+Sine the load torque \\( m_L \\) is not mean-free, it is not possible to set \\(  \mathbf{z}(t)  = m_L\\).
 One practice is therefore to assume the change (i.e. the derivative) to be mean-free and to set the variable as an additional state (here \\( \mathbf{x}_3 \\)).*
 
 <h2>Discrete-time system model</h2>
@@ -79,9 +79,9 @@ Therefore, the discretization is done with the following values \\( J=0.01 \\), 
 \\[ \mathbf{B}_d = \int^{T_s}\_{0}  e^{\mathbf{A} \tau} d \tau  \mathbf{B}  \. \\]
 
 For the sake of completeness, the discrete system model is
-\\[ \mathbf{x}(k) = \mathbf{A}_d(k-1) \mathbf{x}(k-1) + \mathbf{B}_d(k-1) \mathbf{u}(k-1) + \mathbf{v}(k-1) \\]
+\\[ \mathbf{x}(k) = \mathbf{A}_d(k-1) \mathbf{x}(k-1) + \mathbf{B}_d(k-1) \mathbf{u}(k-1) + \mathbf{z}(k-1) \\]
 
-\\[ \mathbf{y}(k) = \mathbf{C}(k) \mathbf{x}(k) + \mathbf{n}(k) . \\]
+\\[ \mathbf{y}(k) = \mathbf{C}(k) \mathbf{x}(k) + \mathbf{v}(k) . \\]
 
 It is worth taking a look at the 3rd state variable \\(x_3\\) with the load torque
 \\[ m_L(k) = m_L(k-1) + v_{m_L}(k-1) \.\\] 
