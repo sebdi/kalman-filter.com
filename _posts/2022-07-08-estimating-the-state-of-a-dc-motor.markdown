@@ -8,52 +8,58 @@ categories: applications
 
 This following example will focus on estimating the angular position \\( \theta \\), angular velocity \\( \dot{\theta} \\) and armature current \\( i \\) of a DC motor with a [linear Kalman filter](/linear-kalman-filter/). 
 When modeling DC motors, it is important to mention that certainly nonlinear models are superior to linear ones.
-However, for didactic purposes and for a lot of applications, a linear model is sufficient for the time being.
+For didactic purposes, the following widely used linear model is sufficient for the time being.
 
 <h2>Continuous-time system model</h2>
 The modeling of a DC motor is structured into two parts.
 The electrical part is modeled with the electrical equivalent circuit and the kinematics with the basic equations of a DC motor.
 
 <h3>Electrical system model</h3>
-The electrical part consists of a resistor \\( R \\) and the coil \\( L \\) which are connected in series, and the electromechanical energy converter \\( M \\)  which is the DC motor. 
-The circuit is operated by the voltage source \\( U \\).
+The electrical part consists of the armature resistance \\( R \\) and the inductance of the armature winding \\( L \\) which are connected in series, and the electromechanical energy converter \\( M \\)  which is the DC motor. 
+The circuit is operated by the voltage source \\( V_s \\).
 The following equation can be determined using the mesh equation
 
-\\[ U = L \dot{i} + R i - U_e \.\\]
+\\[ V_s = L \dot{i} + R i - V_e \.\\]
 
-The DC motor induces the voltage \\( U_e \\) that can be regarded linear to the angular velocity \\( U_e = k_e \dot{\theta} \\). The factor \\( k_e \\) accounts for different motor types.
+The DC motor induces the voltage \\( V_e \\) that can be regarded linear to the angular velocity \\( V_e = K_e \dot{\theta} \\) with the [motor velocity constant](https://en.wikipedia.org/wiki/Motor_constants) \\( K_e \\). 
+
 Since \\(  L \dot{i} \\)  is a differentiating term, we solve for the same and get the following first order differential equation
 
-\\[ \dot{i} = \frac{1}{L} U - \frac{R}{L} i - \frac{k_e}{L} \dot{\theta} \\]
+\\[ \dot{i} = \frac{1}{L} V - \frac{R}{L} i - \frac{K_e}{L} \dot{\theta} \\]
 
 that we will later transfer to the state-space.
 
 <h3>Kinematic system model</h3>
-For the mechanical part, the energy converter is described by the approach of the total moment of inertia.
-The torque equilibrium is started at the mechanical shaft of the motor
+For the mechanical part, the DC motor is described by the physics of [rotations around a fixed axis](https://en.wikipedia.org/wiki/Rotation_around_a_fixed_axis).
+It is assumed that the mechanical shaft and the rotated body, i.e. the actuated load, are known and subsumed under the angular mass \\(J\\).
+The relationship between the angular acceleration \\(\ddot{\theta}\\) caused by the net torque is then as follows
 
 \\[ J \ddot{\theta} = m_m - m_R - m_L \. \\]
 
-For the motor torque \\(m_m\\) there is a linear relationship to the current \\( m_m = k_T i \\) that is adjusted by the factor \\( k_T\\). 
+Where \\(m_m\\) is the motor torque.
+The friction torque \\( m_R \\) and load torque \\( m_L \\) counteract to the motor torque \\(m_m\\) .
+For the motor torque \\(m_m\\) there is a linear relationship to the current \\( m_m = K_T i \\) that is adjusted by the factor \\( K_T\\) which is referred to as [motor torque constant](https://en.wikipedia.org/wiki/Motor_constants). 
 The friction torque \\( m_R \\) is proportional to the angular velocity \\( m_R = b \dot{\theta} \\) multiplied by the coefficient \\( b\\).
-The torque \\( m_L \\) is the mechanical load torque that is \\( m_L = 0 \\), if the DC motor is operated without payload, but we will assume later unknown load torque.
+The torque \\( m_L \\) is the mechanical load torque that is \\( m_L = 0 \\), if the DC motor is operated without payload, but we will assume later a unknown load torque.
 Since \\( \ddot{\theta} \\) is the term with the highest differentiation, we solve for the same and get the following second order differential equation
 
-\\[ \ddot{\theta} = \frac{k_T i}{J} - \frac{b}{J} \dot{\theta} - \frac{m_L}{J} \. \\]
+\\[ \ddot{\theta} = \frac{K_T i}{J} - \frac{b}{J} \dot{\theta} - \frac{m_L}{J} \. \\]
 
 <h3>Combined system model</h3>
 The two upper equations can now be transferred into one state-space model.
 For this purpose, the following states are defined \\( \mathbf{x}_1 = \theta \\), \\( \mathbf{x}_2 = \dot{\theta} \\), \\( \mathbf{x}_3 = m_L \\)  and \\( \mathbf{x}_4 = i \\).
-Furthermore, we model that the system is only controled by the voltage supply, i.e., \\(\mathbf{u}(t) =  U \\) and the derivative of the load torque \\( m_L \\) is a unknown disturbance to the system with \\( \dot{\mathbf{x}}_3 = \mathbf{z}(t) \\).
+In full form
+\\[ \mathbf{x} = \begin{bmatrix} \theta \\\\ \dot{\theta} \\\\ m_L \\\\ i \end{bmatrix} \. \\]
+Furthermore, we model that the system is only controled by the voltage supply, i.e., \\(\mathbf{u}(t) =  V_s \\) and the derivative of the load torque \\( m_L \\) is a unknown disturbance to the system with \\( \dot{\mathbf{x}}_3 = \mathbf{z}(t) \\).
 The continuous state-space model becomes
 
 \\[ \dot{\mathbf{x}}(t) = \mathbf{A} \mathbf{x}(t) + \mathbf{B} \mathbf{u}(t) + \mathbf{G} \mathbf{z}(t) \\]
 
 with the following matrices
 
-\\[ \mathbf{A} = \begin{bmatrix} 0 & 1 & 0 & 0\\\\ 0 & -\frac{b}{J} & -\frac{1}{J} &\frac{k_T}{J} \\\\ 0 & 0 & 0 & 0 \\\\ 0 & -\frac{k_e}{L} & 0 & -\frac{R}{L}\end{bmatrix} \\]
+\\[ \mathbf{A} = \begin{bmatrix} 0 & 1 & 0 & 0\\\\ 0 & -\frac{b}{J} & -\frac{1}{J} &\frac{K_T}{J} \\\\ 0 & 0 & 0 & 0 \\\\ 0 & -\frac{K_e}{L} & 0 & -\frac{R}{L}\end{bmatrix} , \\]
 
-\\[ \mathbf{B} = \begin{bmatrix} 0 \\\\ 0 \\\\ 0 \\\\ \frac{1}{L}\end{bmatrix} \\]
+\\[ \mathbf{B} = \begin{bmatrix} 0 \\\\ 0 \\\\ 0 \\\\ \frac{1}{L}\end{bmatrix} \. \\]
 
 For the measurement equation
 
@@ -66,11 +72,11 @@ let's assume we measure the angular positions with an absolute encoder
 *Some notes, the choice of state variables is the part of modeling and it is possible for both another choice and another order.
 When modeling the load torque \\( m_L \\), it was assumed that the load torque \\( m_L \\) is unknown and noisy.
 Sine the load torque \\( m_L \\) is not mean-free, it is not possible to set \\(  \mathbf{z}(t)  = m_L\\).
-One practice is therefore to assume the change (i.e. the derivative) to be mean-free and to set the variable as an additional state (here \\( \mathbf{x}_3 \\)).*
+One practice is therefore to assume the change (i.e. the derivative) to be mean-free and to set the variable as an additional state (here \\( x_3 \\)).*
 
 <h2>Discrete-time system model</h2>
 Discretization of the matrices \\(\mathbf{A}_d\\) and \\(\mathbf{B}_d\\) does not yield handy formulations if analytical discretized.
-Therefore, the discretization is done with the following values \\( J=0.0001 \ kg \cdot m^2 \\), \\(b=0.0001 \ \frac{Nm}{0.5 \cdot rad} \\), \\(k_T=0.01 \ \frac{Nm}{A} \\), \\(k_e=0.03 \ V \\), \\(R=0.5 \ \Omega \\), \\(L=0.0004 \ H\\) and \\(T_s=0.1 \ s \\) that are later also used for the simulation by using the known equations
+Therefore, the discretization is done with the following values \\( J=0.0001 \ kg \cdot m^2 \\), \\(b=0.0001 \ \frac{Nm}{0.5 \cdot rad} \\), \\(K_T=0.03 \ \frac{Nm}{A} \\), \\(K_e=0.03 \ V \\), \\(R=0.5 \ \Omega \\), \\(L=0.0004 \ H\\) and \\(T_s=0.1 \ s \\) that are later also used for the simulation by using the known equations
 
 \\[ \mathbf{A}_d = e^{\mathbf{A} T_s} \\]
 
@@ -83,7 +89,9 @@ For the sake of completeness, the discrete system model is
 
 It is worth taking a look at the 3rd state variable \\(x_3\\) with the load torque
 \\[ m_L(k) = m_L(k-1) + v_{m_L}(k-1) \.\\] 
-The line is to be understood in such a way that the change of the load torque from time \\( k-1 \\) to time \\( k \\) corresponds to gaussian noise, i.e. \\( m_L(k) - m_L(k-1)= v_{m_L}(k-1)\\).
+The line is to be understood in such a way that the change of the load torque from time \\( k-1 \\) to time \\( k \\) corresponds to gaussian noise, i.e. a random walk.
+This is the primary modeling choice made here. 
+The rest corresponds to the standard procedure for modeling a DC motor.
 
 <h3>Observability</h3>
 In order to check whether the modeling of the measurement mapping allows to observe all states, one can check the rank of the observability matrix
@@ -100,8 +108,10 @@ For the calculation of the covariance matrix of the discrete process noise the d
 \\[ \mathbf{Q}_d = \int^{T_s}\_{0}  e^{\mathbf{A} \tau} \mathbf{Q} e^{\mathbf{A}^T \tau} d \tau  \. \\]
 *The calculation does not provide a handy result for \\( \mathbf{Q}_d \\) therefore it is not given here.*
 
-The determination of the measurement noise is based on the assumption that the angular position of the dc motor is determined by an absolute encoder with a resolution of 12 bits. This results in 4096 discrete positions, where one position corresponds approximately to an interval length of 0.088 degrees. If the 3 sigma deviation is used as a measure of scatter, i.e. that in 99.73 % of all cases the measured value is within the 3 sigma interval, then this corresponds for the measurement noise in a variance of
-\\[  \sigma^2_r = \frac{1}{2} \frac{2 \pi}{4096} \frac{1}{3} \approx 6.54 \cdot 10^{-8} \ \text{rad} \. \\]
+The determination of the measurement noise is based on the assumption that the angular position of the dc motor is determined by an absolute encoder with a resolution of 12 bits. 
+This results in 4096 discrete positions, where one position corresponds approximately to an interval length of 0.088 degrees. 
+The variance of the measruement noise need to be set equal to the variance of the continuous uniform distribution
+\\[  \sigma^2_r = \frac{1}{12} ( \frac{2 \pi}{4096} )^2 = 1.96 \cdot 10^{-7} \ \text{rad} \. \\]
 
 <h2>Implementation and results</h2>
 The following results were received by conducting a simulation in MATLAB.
