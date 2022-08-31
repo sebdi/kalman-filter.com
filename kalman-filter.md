@@ -28,12 +28,12 @@ With this introduction and introduction of the notation, the Kalman filter equat
 The equations of the Kalman filter consist of five major steps:
 <h4>State prediction</h4>
 
-\\[ \mathbf{x}(k\|k-1) = \mathbf{A}_d(k-1) \mathbf{x}(k-1) + \mathbf{B}(k-1) \mathbf{u}(k-1) \\]
+\\[ \mathbf{x}(k\|k-1) = \mathbf{A}_d(k-1) \mathbf{x}(k-1) + \mathbf{B}_d(k-1) \mathbf{u}(k-1) \\]
 
 
 <h4>State prediction covariance</h4>
 
-\\[ \mathbf{P}(k\|k-1) = \mathbf{A}_d(k-1) \mathbf{P}(k-1) \mathbf{A}^{T}_d(k-1) + \mathbf{Q}(k-1) \\]
+\\[ \mathbf{P}(k\|k-1) = \mathbf{A}_d(k-1) \mathbf{P}(k-1) \mathbf{A}^{T}_d(k-1) + \mathbf{Q}_d(k-1) \\]
 
 
 <h4>State prediction covariance</h4>
