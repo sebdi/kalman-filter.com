@@ -7,24 +7,25 @@ categories: kalman-filter
 ---
 
 
-With the help of the error of the state estimation \\( \tilde{\mathbf{x}}(k) = \mathbf{x}(k) - \mathbf{x}(k) \\), the root of the mean square error can be calculated. 
+With the help of the error of the state estimation \\( \tilde{\mathbf{x}}(k) = \mathbf{x}(k) - \mathbf{\hat{x}}(k) \\), the root of the mean square error can be calculated. 
 The RMSE is a quality measure for the absolute estimation error. 
-It is determined in a simulation of length K. The RMSE is then calculated for each time \\( k \in {1...K} \\), averaged by N Monte Carlo runs:
+It is determined in a simulation of length K. The RMSE is then calculated for each time \\( k \in {1...K} \\), averaged by N Monte Carlo runs
 
 \\[ \text{RMSE}(\tilde{\mathbf{x}}(k)) =  \sqrt{\frac{1}{N} \sum^N_{i=1} (\tilde{x}^i_1(k)^2 + ... + \tilde{x}^i_n(k)^2)} \\]
 
 where \\( n = \text{dim}(\tilde{\mathbf{x}}(k)) \\)  is.
-The RMSE should always be calculated only for elements of a certain kind, because it is not correct to add for example velocity and acceleration. 
-If for example a velocity is chosen as state vector, then one speaks of the RMSE of the velocity. 
-The smaller the RMSE, the better is state estimator or fusion algorithm.
+The RMSE should always be calculated only for elements with the same unit, because it is not correct to add e.g. velocity and acceleration.
+In this case, RMSE's are determined per state or unit.
+If for example a velocity is chosen as a state vector, it is called the RMSE of the velocity.
+In general, the smaller the RMSE, the better a state estimate.
 
 If real measurement data are to be evaluated, the RMSE can only be calculated from a single run. 
 The RMSE thus has no statistical significance. 
-The RMSE can therefore alternatively be calculated via the mean estimation error:
+The RMSE can therefore alternatively be calculated via the mean estimation error
 
-\\[ \mu_{\tilde{x}} = \frac{1}{K} \sum^K_{k=1}  \tilde{\mathbf{x}} \\]
+\\[ \mu_{\tilde{x}} = \frac{1}{K} \sum^K_{k=1}  \tilde{\mathbf{x}}(k) \\]
 
-and the standard deviation of the estimation error:
+and the standard deviation of the estimation error
 
 \\[ \sigma_{\tilde{x}} = \sqrt{ \frac{1}{K} \sum^K_{k=1} (\tilde{\mathbf{x}}(k) - \mu_{\tilde{x}}  )^2 } \\]
 
@@ -32,8 +33,9 @@ with
 
 \\[ \text{RMSE}(\tilde{\mathbf{x}}(k)) = \sqrt{ \mu_{\tilde{x}}  + \sigma_{\tilde{x}} }  \. \\]
 
-However, since the true state x must be known, this can only be done in practice can only be done with highly accurate reference data.
-
+However, since the true state \\( \mathbf{x} \\), i.e. a "ground truth", must be available, this can only be done in practice with highly accurate reference data.
+It may also be the case that not all states can be measured by reference measuring devices. 
+It is therefore legitimate to calculate the RMSE only for the states for which reference data are available.
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
