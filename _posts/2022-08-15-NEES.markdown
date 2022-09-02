@@ -14,37 +14,33 @@ Mathematically speaking, this is expressed by the expected value of the estimati
 
 \\[ E [ \mathbf{x}(k) - \hat{\mathbf{x}}(k)  ] = E [ \tilde{\mathbf{x}}(k)  ] = 0 \\]
 
-and the condition for consistency
+and that the covariance matrix of the estimation error is equal to the covariance matrix of the state estimator
 
 \\[ E [ [\mathbf{x}(k) - \hat{\mathbf{x}}(k)] [\mathbf{x}(k) - \hat{\mathbf{x}}(k)]^T ] = E [ \tilde{\mathbf{x}}(k\|k) \tilde{\mathbf{x}}(k\|k)^T  ] = \mathbf{P}(k\|k) \. \\]
 
-Checking the consistency of the state estimator can be done with a Normalized Estimation Error Squared (NEES) test.
+Checking the consistency of the state estimator can be done with a hypothesis test using the Normalized Estimation Error Squared (NEES).
 For this purpose, a normalization of the estimation error \\( \tilde{\mathbf{x}} \\) and the error covariance matrix \\( \mathbf{P} \\) is performed
 
 \\[ \epsilon (k) = \tilde{\mathbf{x}}(k\|k)^T \mathbf{P}(k\|k)^{-1} \tilde{\mathbf{x}}(k\|k) \ .\\]
 
 The quantity \\( \epsilon (k) \\)  is chi-squared distributed with \\( \text{dim}( \tilde{\mathbf{x}}(k) )) = n_x \\) degrees of freedom.
 
-*Brief explanation why chi-squared distributed: The sum of squared random variables which are normally distributed are chi-squared distributed. 
-Since \\( \tilde{\mathbf{x}} \\) is the difference of two standard normal random variables, i.e. \\( \mathbf{x}(k) \\) and \\( \hat{\mathbf{x}}(k)\\), \\( \tilde{\mathbf{x}} \\) is a standard normal random variable, too. 
+*Brief explanation why chi-squared distributed: The sum of squared random variables which are standard normally distributed are chi-squared distributed. 
+Under the assumption that \\( \mathbf{x}(k) \\) and \\( \hat{\mathbf{x}}(k)\\) are standard normally distributed random variables, the estimation error \\( \tilde{\mathbf{x}} \\) is a standard normal random variable, too.
 [Consult Wikipedia for more details.](https://en.wikipedia.org/wiki/Chi-squared_distribution)*
 
-The above properties can now be used to check whether a state estimator delivers consistent results, i.e. whether it correctly estimates the quality of its estimation.
-For this purpose, a simulation is used and the fact that the squared estimation error is chi-squared distributed.
-This allows for a hypothesis test.
-The statistical significance is ensured by averaging over N Monte Carlo test runs
+A very useful property of \\( \epsilon(k) \\) is that the expectation is
 
-\\[ \text{NEES}( \epsilon(k) ) = \overline{\epsilon} (k)  = \frac{1}{N} \sum^N_{i=1} \epsilon_i(k) \. \\]
+\\[E [ \epsilon(k) ] = n_x \. \\]
 
-\\( \overline{\epsilon}\\) has the property that the mean converges towards \\( N n_x \\) and that \\( \overline{\epsilon}\\) is chi-squared distributed with \\( N n_x \\) degrees of freedom.
-The consistency test is done with a hypothesis test. 
+This can now be used to check whether a state estimator delivers consistent results, i.e. whether it correctly estimates the quality of its estimation.
 Under the hypothesis \\( H_0 \\) that the filter is consistent, the hypothesis \\( H_0 \\) is accepted if
 
-\\[ \overline{\epsilon} (k) \in [r_1,r_2] \. \\]
+\\[ \epsilon (k) \in [r_1,r_2] \. \\]
 
-The acceptance interval is chosen such that the probability that \\( H_0 \\) is accepted is \\( (1 - \alpha) \\)
+The acceptance interval is chosen such that the probability that \\( H_0 \\) is accepted is \\( (1 - \alpha) \\) 
 
-\\[ P \\{ \overline{\epsilon} (k) \in [r_1,r_2]  \| H_0 \\} = 1 - \alpha \. \\]
+\\[ P \\{ \epsilon (k) \in [r_1,r_2]  \| H_0 \\} = 1 - \alpha \. \\]
 
 If the NEES is greater than the upper bound \\( r_2 \\), then the filter estimates the error to be lower than it is in reality.
 Provided that the measurement noise was selected properly, the process noise was chosen too low.
@@ -52,8 +48,29 @@ If the NEES is smaller than \\( r_1 \\), then the error is estimated larger than
 In this case the filter is called inefficient. 
 The process noise was chosen too large.
 
-It is important to note that a NEES test is only statistically significant when averaged over many runs. This is easier to do in a simulation than in real life. 
-In practice, it is therefore recommended to perform the [Normalized Innovation Squared (NIS)](/normalized-innovation-squared/) test exclusively or additionally.
+Most often, one can test the hypothesis by plotting the \\( \text{NEES}( \epsilon(k) ) \\) and the confidence interval and check visualally if the NEES is inside of \\( [r_1,r_2] \\). 
+
+<p align="center">
+<img src="/assets/images/dc_motor/NEES.png" title="Normalized Estimation Error Squared (NEES)"/>
+</p>
+
+Quantitatively, one counts the number of NEES values that are outside the confidence interval and sets them in relation to the total number of \\(  \epsilon(k) \\). 
+Formal speaking, 
+
+\\[ \frac{1}{K} \sum_{ \forall k \in K : \epsilon(k) \in [r_1,r_2]} 1  < (1 - \alpha) \\]
+
+where \\( K \in \mathbb{N}^+ \\) is the maximum number of time steps, e.g. \\( \{1,2,...,K \} \\).
+
+To increase statistical significance, additional \\( N \\) independent samples of \\( \epsilon(k) \\) can be generated and an average NEES can be formed
+
+\\[ \text{ANEES}( \epsilon(k) ) = \overline{\epsilon} (k)  = \frac{1}{N} \sum^N_{i=1} \epsilon_i(k) \. \\]
+
+\\( \overline{\epsilon}\\) has the property that the expectation converges towards \\( N n_x \\) and that \\( \overline{\epsilon}\\) is chi-squared distributed with \\( N n_x \\) degrees of freedom.
+The hypothesis test is repeated in the same way as described above.
+
+Obviously, the NEES is statistically significant only when averaged over many runs.
+This is easier to do in a simulation than in a real-world setting. 
+In practice, it is therefore recommended to perform the [Normalized Innovation Squared (NIS)](/normalized-innovation-squared/) test exclusively or additionally to the NEES.
 
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
