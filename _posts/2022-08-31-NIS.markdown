@@ -1,0 +1,38 @@
+---
+layout: post
+title:  "Normalized Innovation Squared (NIS)"
+permalink: /normalized-innovation-squared/
+date:   2022-08-31 00:00:00 +0000
+categories: kalman-filter
+---
+
+The NIS hypothesis test allows to check whether the Kalman filter is consistent with the measurement residual and the associated innovation covariance matrix.
+
+*The NIS hypothesis test uses the same mechanics as the [NEES hypothesis test](/normalized-estimation-error-squared/). It is therefore recommended to read this article first.*
+
+Measurement prediction \\( \mathbf{\hat{z}}(k)  \\)
+Measurement residual
+\\[ \nu (k) = \mathbf{z}(k) - \mathbf{\hat{z}}(k)\\\]
+
+\\[ \epsilon_\nu (k) = \nu(k)^T \mathbf{S}(k)^{-1} \nu(k) \ .\\]
+
+As with [NEES](/normalized-estimation-error-squared/), the quantity \\( \epsilon_\nu (k) \\) is chi-squared distributed with \\( \text{dim}( \nu(k) ) = n_z \\) degrees of freedom, i.e. the dimension of the measurement vector \\( \hat{z}(k)  \\).
+
+
+\\[ \text{NIS}( \epsilon\_{\nu}(k) ) = \overline{\epsilon}\_{\nu} (k)  = \frac{1}{N} \sum^N_{i=1} \epsilon^i_\nu(k) \. \\]
+
+
+\\( \overline{\epsilon}\\) has the property that the mean converges towards \\( N n_x \\) and that \\( \overline{\epsilon}\\) is chi-squared distributed with \\( N n_x \\) degrees of freedom.
+The consistency test is done with a hypothesis test. 
+Under the hypothesis \\( H_0 \\) that the filter is consistent, the hypothesis \\( H_0 \\) is accepted if
+
+\\[ \overline{\epsilon} (k) \in [r_1,r_2] \. \\]
+
+The acceptance interval is chosen such that the probability that \\( H_0 \\) is accepted is \\( (1 - \alpha) \\)
+
+\\[ P \\{ \overline{\epsilon} (k) \in [r_1,r_2]  \| H_0 \\} = 1 - \alpha \. \\]
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
