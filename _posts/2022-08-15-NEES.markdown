@@ -2,7 +2,7 @@
 layout: post
 title:  "Normalized Estimation Error Squared (NEES)"
 permalink: /normalized-estimation-error-squared/
-date:   2022-08-14 00:00:00 +0000
+date:   2022-09-05 00:00:00 +0000
 categories: kalman-filter
 ---
 
@@ -68,9 +68,11 @@ To increase statistical significance, additional \\( N \\) independent samples o
 \\( \overline{\epsilon}\\) has the property that the expectation converges towards \\( N n_x \\) and that \\( \overline{\epsilon}\\) is chi-squared distributed with \\( N n_x \\) degrees of freedom.
 The hypothesis test is repeated in the same way as described above.
 
-Obviously, the NEES is statistically significant only when averaged over many runs.
-This is easier to do in a simulation than in a real-world setting. 
-In practice, it is therefore recommended to perform the [Normalized Innovation Squared (NIS)](/normalized-innovation-squared/) test exclusively or additionally to the NEES.
+Obviously, the NEES is only correct in a "truth model simulation", because the true state and the measurements are generated from the same system model with known statistical properties that the Kalman filter uses.
+It is therefore likely that a Kalman filter will pass the NEES hypothesis test within the simulation, but not in the real application.
+In practice, it is therefore recommended to perform the [Normalized Innovation Squared (NIS)](/normalized-innovation-squared/) test exclusively or additionally to the NEES, because it does not require access to the true state vector.
+However, the NEES hypothesis test offers a deeper insight because the entire state vector is used and helps among other things in debugging within an application. 
+This is based on the idea that if the implementation does not work correctly in a simulation with the "truth model", why should it work in reality.
 
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
