@@ -2,21 +2,19 @@
 layout: post
 title:  "Normalized Estimation Error Squared (NEES)"
 permalink: /normalized-estimation-error-squared/
-date:   2022-09-05 00:00:00 +0000
+date:   2022-09-06 00:00:00 +0000
 categories: kalman-filter
 ---
 
 A desired property of a state estimator is consistency. 
-A state estimator is consistent if it is able to correctly indicate the quality of the estimate. 
-It should be able to do this because an increase in sample size leads to a growth in information content and the state estimate \\( \hat{\mathbf{x}}(k) \\) is as close as possible to the true state \\( \mathbf{x}(k)  \\).
+A state estimator is consistent if it is able to indicate the quality of the estimate correctly. 
+It should be able to do this because an increase in sample size leads to a growth in information content and the state estimate \\( \hat{\mathbf{x}}(k) \\) shall be as close as possible to the true state \\( \mathbf{x}(k)  \\).
 This results from the requirement that a state estimator shall be unbiased.
 Mathematically speaking, this is expressed by the expected value of the estimation error \\( \tilde{\mathbf{x}}(k)  \\) being zero
+\\[ E [ \mathbf{x}(k) - \hat{\mathbf{x}}(k)  ] = E [ \tilde{\mathbf{x}}(k)  ] \overset{!}{=} 0 \\]
 
-\\[ E [ \mathbf{x}(k) - \hat{\mathbf{x}}(k)  ] = E [ \tilde{\mathbf{x}}(k)  ] = 0 \\]
-
-and that the covariance matrix of the estimation error is equal to the covariance matrix of the state estimator
-
-\\[ E [ [\mathbf{x}(k) - \hat{\mathbf{x}}(k)] [\mathbf{x}(k) - \hat{\mathbf{x}}(k)]^T ] = E [ \tilde{\mathbf{x}}(k\|k) \tilde{\mathbf{x}}(k\|k)^T  ] = \mathbf{P}(k\|k) \. \\]
+and that the covariance matrix of the estimation error shall be equal to the covariance matrix \\( \mathbf{P}(k\|k)  \\) of the state estimator
+\\[ E [ [\mathbf{x}(k) - \hat{\mathbf{x}}(k)] [\mathbf{x}(k) - \hat{\mathbf{x}}(k)]^T ] = E [ \tilde{\mathbf{x}}(k\|k) \tilde{\mathbf{x}}(k\|k)^T  ] \overset{!}{=} \mathbf{P}(k\|k) \. \\]
 
 Checking the consistency of the state estimator can be done with a hypothesis test using the Normalized Estimation Error Squared (NEES).
 For this purpose, a normalization of the estimation error \\( \tilde{\mathbf{x}} \\) and the error covariance matrix \\( \mathbf{P} \\) is performed
@@ -25,33 +23,46 @@ For this purpose, a normalization of the estimation error \\( \tilde{\mathbf{x}}
 
 The quantity \\( \epsilon (k) \\)  is chi-squared distributed with \\( \text{dim}( \tilde{\mathbf{x}}(k) )) = n_x \\) degrees of freedom.
 
-*Brief explanation why chi-squared distributed: The sum of squared random variables which are standard normally distributed are chi-squared distributed. 
+*A Brief explanation why chi-squared distributed: The sum of standard normally distributed squared random variables is chi-squared distributed. 
 Under the assumption that \\( \mathbf{x}(k) \\) and \\( \hat{\mathbf{x}}(k)\\) are standard normally distributed random variables, the estimation error \\( \tilde{\mathbf{x}} \\) is a standard normal random variable, too.
 [Consult Wikipedia for more details.](https://en.wikipedia.org/wiki/Chi-squared_distribution)*
+
+<h3>Hypothesis testing</h3>
 
 A very useful property of \\( \epsilon(k) \\) is that the expectation is
 
 \\[E [ \epsilon(k) ] = n_x \. \\]
 
 This can now be used to check whether a state estimator delivers consistent results, i.e. whether it correctly estimates the quality of its estimation.
-Under the hypothesis \\( H_0 \\) that the filter is consistent, the hypothesis \\( H_0 \\) is accepted if
+The hypothesis
+
+\\[ H_0 :  \text{The estimation error $\hat{\mathbf{x}}(k)$ is consistent with the filters covariance matrix $\mathbf{P}(k)$} \\]
+
+is accepted if
 
 \\[ \epsilon (k) \in [r_1,r_2] \. \\]
 
-The acceptance interval is chosen such that the probability that \\( H_0 \\) is accepted is \\( (1 - \alpha) \\) 
+The acceptance interval is chosen such that the probability \\( P \\) that \\( H_0 \\) is accepted is \\( (1 - \alpha) \\), i.e. 
 
 \\[ P \\{ \epsilon (k) \in [r_1,r_2]  \| H_0 \\} = 1 - \alpha \. \\]
+
+The confidence interval \\( [r_1,r_2] \\) can be calculated with the inverse cumulative distribution function \\( F^{-1} \\) of the chi-squared distribution
+
+\\[ r_1 = F^{-1} ( \frac{\alpha}{2}, n_x ), \ r_2 = F^{-1} ( 1- \frac{\alpha}{2}, n_x ) \. \\]
+
+<h3>Analysis of the NEES</h3>
 
 If the NEES is greater than the upper bound \\( r_2 \\), then the filter estimates the error to be lower than it is in reality.
 Provided that the measurement noise was selected properly, the process noise was chosen too low.
 If the NEES is smaller than \\( r_1 \\), then the error is estimated larger than it really is. 
-In this case the filter is called inefficient. 
+In this case, the filter is called inefficient. 
 The process noise was chosen too large.
 
-Most often, one can test the hypothesis by plotting the \\( \text{NEES}( \epsilon(k) ) \\) and the confidence interval and check visualally if the NEES is inside of \\( [r_1,r_2] \\). 
+Most often, one can test the hypothesis by plotting the \\( \text{NEES}( \epsilon(k) ) \\) and the confidence interval \\( [r_1,r_2] \\) and check visually if the NEES is inside or outside. 
 
 <p align="center">
 <img src="/assets/images/dc_motor/NEES.png" title="Normalized Estimation Error Squared (NEES)"/>
+<center>Figure 1: Example of ANEES with 4 degrees of freedom.</center>
 </p>
 
 Quantitatively, one counts the number of NEES values that are outside the confidence interval and sets them in relation to the total number of \\(  \epsilon(k) \\). 
@@ -61,18 +72,24 @@ Formal speaking,
 
 where \\( K \in \mathbb{N}^+ \\) is the maximum number of time steps, e.g. \\( \{1,2,...,K \} \\).
 
+<h3>Higher statistical significance</h3>
+
 To increase statistical significance, additional \\( N \\) independent samples of \\( \epsilon(k) \\) can be generated and an average NEES can be formed
 
-\\[ \text{ANEES}( \epsilon(k) ) = \overline{\epsilon} (k)  = \frac{1}{N} \sum^N_{i=1} \epsilon_i(k) \. \\]
+\\[ \text{ANEES}( \epsilon_i(k) ) = \overline{\epsilon} (k)  = \frac{1}{N} \sum^N_{i=1} \epsilon_i(k) \. \\]
 
-\\( \overline{\epsilon}\\) has the property that the expectation converges towards \\( N n_x \\) and that \\( \overline{\epsilon}\\) is chi-squared distributed with \\( N n_x \\) degrees of freedom.
+\\( \overline{\epsilon}\\) has the property that the expectation converges towards \\( n_x \\) and that \\( N \overline{\epsilon}\\) is chi-squared distributed with \\( N n_x \\) degrees of freedom.
+The confidence interval must therefore be normalized by \\( N\\), i.e.
+\\[ r_1 = \frac{1}{N} F^{-1} ( \frac{\alpha}{2},N n_x ), \ r_2 = \frac{1}{N} F^{-1} ( 1- \frac{\alpha}{2},N n_x ) \. \\]
 The hypothesis test is repeated in the same way as described above.
+
+<h3>Conclusion</h3>
 
 Obviously, the NEES is only correct in a "truth model simulation", because the true state and the measurements are generated from the same system model with known statistical properties that the Kalman filter uses.
 It is therefore likely that a Kalman filter will pass the NEES hypothesis test within the simulation, but not in the real application.
 In practice, it is therefore recommended to perform the [Normalized Innovation Squared (NIS)](/normalized-innovation-squared/) test exclusively or additionally to the NEES, because it does not require access to the true state vector.
 However, the NEES hypothesis test offers a deeper insight because the entire state vector is used and helps among other things in debugging within an application. 
-This is based on the idea that if the implementation does not work correctly in a simulation with the "truth model", why should it work in reality.
+This is based on the idea that if the implementation does not work correctly in a simulation with the "truth model", why should it work in reality?
 
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
