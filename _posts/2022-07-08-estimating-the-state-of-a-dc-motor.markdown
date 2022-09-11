@@ -6,7 +6,7 @@ date:   2022-07-08 00:00:00 +0000
 categories: applications
 ---
 
-This following example will focus on estimating the angular position \\( \theta \\), angular velocity \\( \dot{\theta} \\) and armature current \\( i \\) of a DC motor with a [linear Kalman filter](/linear-kalman-filter/). 
+This example will focus on estimating the angular position \\( \theta \\), angular velocity \\( \dot{\theta} \\) and armature current \\( i \\) of a DC motor with a [linear Kalman filter](/linear-kalman-filter/). 
 When modeling DC motors, it is important to mention that certainly nonlinear models are superior to linear ones.
 For didactic purposes, the following widely used linear model is sufficient for the time being.
 
