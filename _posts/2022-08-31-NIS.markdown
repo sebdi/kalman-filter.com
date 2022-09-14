@@ -2,35 +2,56 @@
 layout: post
 title:  "Normalized Innovation Squared (NIS)"
 permalink: /normalized-innovation-squared/
-date:   2022-08-31 00:00:00 +0000
+date:   2022-09-14 00:00:00 +0000
 categories: kalman-filter
 ---
 
-The NIS hypothesis test allows to check whether the Kalman filter is consistent with the measurement residual and the associated innovation covariance matrix.
+The Normalized Innovation Squared (NIS) metric allows to check whether the Kalman filter is consistent with the measurement residual \\( \nu (k) \\) and the associated innovation covariance matrix \\( \mathbf{S}(k) \\).
 
-*The NIS hypothesis test uses the same mechanics as the [NEES hypothesis test](/normalized-estimation-error-squared/). It is therefore recommended to read this article first.*
+*The NIS hypothesis test uses the same mechanics as the [NEES metric](/normalized-estimation-error-squared/).
+It is therefore recommended to read this article first.*
 
-Measurement prediction \\( \mathbf{\hat{z}}(k)  \\)
-Measurement residual
-\\[ \nu (k) = \mathbf{z}(k) - \mathbf{\hat{z}}(k)\\\]
+The measurement residual \\( \nu (k) \\) is the difference of the measurement prediction \\( \mathbf{\hat{z}}(k) \\) and the true value for the measurement \\( \mathbf{z}(k) \\).
+The latter is just the true state vector projected to the measurement space with 
 
-\\[ \epsilon_\nu (k) = \nu(k)^T \mathbf{S}(k)^{-1} \nu(k) \ .\\]
+\\[ \mathbf{z} (k) = \mathbf{C} \ \mathbf{x}(k) .\\\]
 
-As with [NEES](/normalized-estimation-error-squared/), the quantity \\( \epsilon_\nu (k) \\) is chi-squared distributed with \\( \text{dim}( \nu(k) ) = n_z \\) degrees of freedom, i.e. the dimension of the measurement vector \\( \hat{z}(k)  \\).
+The consistency check of the innovation covariance matrix uses the normalizing with the measurement residual \\( \nu (k) \\)
+
+\\[ \text{NIS} (\nu(k),\mathbf{S}(k)) = \epsilon_\nu (k) = \nu(k)^T \mathbf{S}(k)^{-1} \nu(k) \ .\\]
+
+As with [NEES](/normalized-estimation-error-squared/), the quantity \\( \epsilon_\nu (k) \\) is chi-squared distributed with \\( \text{dim}( \nu(k) ) = n_z \\) degrees of freedom, i.e. the dimension of the measurement vector \\( \mathbf{\hat{z}}(k)  \\).
+
+In order to achieve an increased statistical significance, an averaged NIS can be calculated by running the test N times
+\\[ \text{ANIS}( \epsilon^i\_{\nu}(k) ) = \overline{\epsilon}\_{\nu} (k)  = \frac{1}{N} \sum^N_{i=1} \epsilon^i_\nu(k) \. \\]
 
 
-\\[ \text{NIS}( \epsilon\_{\nu}(k) ) = \overline{\epsilon}\_{\nu} (k)  = \frac{1}{N} \sum^N_{i=1} \epsilon^i_\nu(k) \. \\]
+\\( \epsilon\_{\nu}\\) has the property that the mean converges towards \\( N n_i \\) and that \\( \epsilon\_{\nu}\\) is chi-squared distributed with \\( N n_z \\) degrees of freedom.
 
+<h3>Hypothesis testing</h3>
 
-\\( \overline{\epsilon}\\) has the property that the mean converges towards \\( N n_x \\) and that \\( \overline{\epsilon}\\) is chi-squared distributed with \\( N n_x \\) degrees of freedom.
-The consistency test is done with a hypothesis test. 
-Under the hypothesis \\( H_0 \\) that the filter is consistent, the hypothesis \\( H_0 \\) is accepted if
+The hypothesis test is performed with the hypothesis
 
-\\[ \overline{\epsilon} (k) \in [r_1,r_2] \. \\]
+\\[ H_0 :  \text{The measurement residual $ \nu (k)$ is consistent with the innovation covariance matrix $\mathbf{S}(k)$} \\]
 
-The acceptance interval is chosen such that the probability that \\( H_0 \\) is accepted is \\( (1 - \alpha) \\)
+and is accepted if
 
-\\[ P \\{ \overline{\epsilon} (k) \in [r_1,r_2]  \| H_0 \\} = 1 - \alpha \. \\]
+\\[ \epsilon\_{\nu} \in [r_1,r_2] \. \\]
+
+The acceptance interval is chosen such that the probability \\( P \\) that \\( H_0 \\) is accepted is \\( (1 - \alpha) \\), i.e. 
+
+\\[ P \\{ \epsilon\_{\nu} \in [r_1,r_2]  \| H_0 \\} = 1 - \alpha \. \\]
+
+The confidence interval \\( [r_1,r_2] \\) can be calculated with the inverse cumulative distribution function \\( F^{-1} \\) of the chi-squared distribution
+
+\\[ r_1 = F^{-1} ( \frac{\alpha}{2}, n_z ), \ r_2 = F^{-1} ( 1- \frac{\alpha}{2}, n_z ) \. \\]
+
+<h3>Conclusion</h3>
+
+The NIS metric in conjunction with a hypothesis test allows to check for the consistency of the innovation covariance matrix \\( \mathbf{S}(k) \\). 
+Since the innovation covariance matrix directly influences the Kalman matrix \\( \mathbf{K} \\), the consistency of the innovation covariance matrix \\( \mathbf{S}(k) \\) has a direct influence on the efficiency of the kalman filter. 
+The hypothesis procedure is analogous to the NEES metric with the difference that for the NIS only the measurement space is used and not the full state-space. 
+This is particularly relevant for practice, since in practice often only ground truth data is available for the measurement space.
 
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
