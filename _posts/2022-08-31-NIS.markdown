@@ -2,7 +2,7 @@
 layout: post
 title:  "Normalized Innovation Squared (NIS)"
 permalink: /normalized-innovation-squared/
-date:   2022-09-14 00:00:00 +0000
+date:   2022-09-25 00:00:00 +0000
 categories: kalman-filter
 ---
 
@@ -11,16 +11,12 @@ The Normalized Innovation Squared (NIS) metric allows to check whether the Kalma
 *The NIS hypothesis test uses the same mechanics as the [NEES metric](/normalized-estimation-error-squared/).
 It is therefore recommended to read this article first.*
 
-The measurement residual \\( \nu (k) \\) is the difference of the measurement prediction \\( \mathbf{\hat{z}}(k) \\) and the true value for the measurement \\( \mathbf{z}(k) \\).
-The latter is just the true state vector projected to the measurement space with 
-
-\\[ \mathbf{z} (k) = \mathbf{C} \ \mathbf{x}(k) .\\\]
-
+The measurement residual \\( \nu (k) \\) is the difference of the measurement prediction \\( \mathbf{\hat{y}}(k) \\) and the measurement \\( \mathbf{y}(k) \\).
 The consistency check of the innovation covariance matrix uses the normalizing with the measurement residual \\( \nu (k) \\)
 
 \\[ \text{NIS} (\nu(k),\mathbf{S}(k)) = \epsilon_\nu (k) = \nu(k)^T \mathbf{S}(k)^{-1} \nu(k) \ .\\]
 
-As with [NEES](/normalized-estimation-error-squared/), the quantity \\( \epsilon_\nu (k) \\) is chi-squared distributed with \\( \text{dim}( \nu(k) ) = n_z \\) degrees of freedom, i.e. the dimension of the measurement vector \\( \mathbf{\hat{z}}(k)  \\).
+As with [NEES](/normalized-estimation-error-squared/), the quantity \\( \epsilon_\nu (k) \\) is chi-squared distributed with \\( \text{dim}( \nu(k) ) = n_z \\) degrees of freedom, i.e. the dimension of the measurement vector \\( \mathbf{y}(k)  \\).
 
 In order to achieve an increased statistical significance, an averaged NIS can be calculated by running the test N times
 \\[ \text{ANIS}( \epsilon^i\_{\nu}(k) ) = \overline{\epsilon}\_{\nu} (k)  = \frac{1}{N} \sum^N_{i=1} \epsilon^i_\nu(k) \. \\]
