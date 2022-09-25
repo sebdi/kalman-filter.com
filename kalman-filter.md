@@ -33,21 +33,21 @@ The equations of the Kalman filter consist of five major steps:
 
 <h4>State prediction covariance</h4>
 
-\\[ \mathbf{P}(k\|k-1) = \mathbf{A}_d(k-1) \mathbf{P}(k-1) \mathbf{A}^{T}_d(k-1) + \mathbf{Q}_d(k-1) \\]
+\\[ \mathbf{P}(k\|k-1) = \mathbf{A}_d(k-1) \mathbf{P}(k-1) \mathbf{A}_d(k-1)^{T} + \mathbf{Q}_d(k-1) \\]
 
 
-<h4>State prediction covariance</h4>
+<h4>Filter gain</h4>
 
-\\[ \mathbf{K}(k) = \mathbf{P}(k\|k-1) \mathbf{C}^{T}(k) (\mathbf{C}(k) \mathbf{P}(k\|k-1) \mathbf{C}^{T}(k) + \mathbf{R})^{-1} \\]
+\\[ \mathbf{K}(k) = \mathbf{P}(k\|k-1) \mathbf{C}(k)^{T} (\mathbf{C}(k) \mathbf{P}(k\|k-1) \mathbf{C}(k)^{T} + \mathbf{R})^{-1} \\]
 
-
-<h4>Update state covariance</h4>
-
-\\[ \mathbf{x}(k) = \mathbf{x}(k\|k-1) + \mathbf{K}(k) (\mathbf{y}(k) - \mathbf{C}(k) \mathbf{x}(k\|k-1) )  \\]
 
 <h4>Update state estimate</h4>
 
-\\[ \mathbf{K}(k) = (\mathbf{I} - \mathbf{K}(k) \mathbf{C}(k) ) \mathbf{P}(k\|k-1) \\]
+\\[ \mathbf{x}(k) = \mathbf{x}(k\|k-1) + \mathbf{K}(k) (\mathbf{y}(k) - \mathbf{C}(k) \mathbf{x}(k\|k-1) )  \\]
+
+<h4>Update state covariance</h4>
+
+\\[ \mathbf{P}(k) = (\mathbf{I} - \mathbf{K}(k) \mathbf{C}(k)) \mathbf{P}(k\|k-1)\\]
 
 <h1>Further reading</h1>
 The Kalman filter is named after the publication of Rudolf Emil Kalman who presented his approach in 1960 in the paper "A New Approach to Linear Filtering and Prediction Problems” [1]. However, the idea was described by other authors several years earlier. Nevertheless, the spread of the concept is attributed to Kalman.
