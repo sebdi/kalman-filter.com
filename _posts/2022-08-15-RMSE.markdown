@@ -2,25 +2,25 @@
 layout: post
 title:  "Root Mean Square Error (RMSE)"
 permalink: /root-mean-square-error/
-date:   2022-08-14 00:00:00 +0000
+date:   2022-09-25 00:00:00 +0000
 categories: kalman-filter
 ---
 
-
-With the help of the error of the state estimation \\( \tilde{\mathbf{x}}(k) = \mathbf{x}(k) - \mathbf{\hat{x}}(k) \\), the root of the mean square error can be calculated. 
-The RMSE is a quality measure for the absolute estimation error. 
-It is determined in a simulation of length K. The RMSE is then calculated for each time \\( k \in {1...K} \\), averaged by N Monte Carlo runs
-
+To evaluate the performance of state estimators, the estimation error \\( \tilde{\mathbf{x}}(k) = \mathbf{x}(k) - \mathbf{\hat{x}}(k) \\) is evaluated. 
+The root mean square error (RMSE), which is a widely used quality measure, is suitable for this purpose.
+The basis is the estimation error \\(\tilde{\mathbf{x}}(k)\\) for each time step \\( k \in {1...K} \\).
+<h3>In simulation</h3>
+For a simulation with a length of \\( K\\) time increments the RMSE is averaged by \\( N\\)  Monte Carlo runs in order to achieve a high statistical significance
 \\[ \text{RMSE}(\tilde{\mathbf{x}}(k)) =  \sqrt{\frac{1}{N} \sum^N_{i=1} (\tilde{x}^i_1(k)^2 + ... + \tilde{x}^i_n(k)^2)} \\]
-
 where \\( n = \text{dim}(\tilde{\mathbf{x}}(k)) \\)  is.
+
 The RMSE should always be calculated only for elements with the same unit, because it is not correct to add e.g. velocity and acceleration.
 In this case, RMSE's are determined per state or unit.
 If for example a velocity is chosen as a state vector, it is called the RMSE of the velocity.
-In general, the smaller the RMSE, the better a state estimate.
-
+In general, the smaller the RMSE, the better the state estimator.
+<h3>In real-world applications</h3>
 If real measurement data are to be evaluated, the RMSE can only be calculated from a single run. 
-The RMSE thus has no statistical significance. 
+The RMSE thus has no high statistical significance. 
 The RMSE can therefore alternatively be calculated via the mean estimation error
 
 \\[ \mu_{\tilde{x}} = \frac{1}{K} \sum^K_{k=1}  \tilde{\mathbf{x}}(k) \\]
