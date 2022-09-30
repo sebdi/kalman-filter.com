@@ -13,10 +13,9 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: kalman-filter.com
+title: Kalman filter for professionals
 email: s.dingler+kf@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  A loose collection of kalman filter related topics
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://kalman-filter.com" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  sebdi
@@ -28,9 +27,11 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+show_excerpts: true
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
 exclude:
   - README.md
   - .gitignore
+ 
