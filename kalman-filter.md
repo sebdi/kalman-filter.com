@@ -19,7 +19,7 @@ where \\( \mathbf{C}(t) \\) is the measurement matrix that projects the state-sp
 <h1>Discrete state-space</h1>
 For the use and application of the Kalman filter within a computer, the discretized state space description is used. 
 For this purpose, this page uses the following notation
-\\[ \mathbf{x}(k) = \mathbf{A}_d(k-1) \mathbf{x}(k-1) + \mathbf{B}_d(k-1) \mathbf{u}(k-1) + \mathbf{G}_d(k) \mathbf{z}(k-1) \\]
+\\[ \mathbf{x}(k) = \mathbf{A}_d(k-1) \mathbf{x}(k-1) + \mathbf{B}_d(k-1) \mathbf{u}(k-1) + \mathbf{G}_d(k-1) \mathbf{z}(k-1) \\]
 
 \\[ \mathbf{y}(k) = \mathbf{C}(k) \mathbf{x}(k) + \mathbf{v}(k) . \\]
 

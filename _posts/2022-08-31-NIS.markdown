@@ -47,7 +47,7 @@ The confidence interval \\( [r_1,r_2] \\) can be calculated with the inverse cum
 The NIS metric in conjunction with a hypothesis test allows to check for the consistency of the innovation covariance matrix \\( \mathbf{S}(k) \\). 
 Since the innovation covariance matrix directly influences the Kalman matrix \\( \mathbf{K} \\), the consistency of the innovation covariance matrix \\( \mathbf{S}(k) \\) has a direct influence on the efficiency of the kalman filter. 
 The hypothesis procedure is analogous to the NEES metric with the difference that for the NIS only the measurement space is used and not the full state-space. 
-This is particularly relevant for practice, since in practice often only ground truth data is available for the measurement space.
+This is particularly relevant for practice, since ground truth data is not always available.
 
 
 [jekyll-docs]: https://jekyllrb.com/docs/home

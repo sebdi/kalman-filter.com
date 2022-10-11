@@ -13,10 +13,11 @@ Simon, Daniel. (2006). Optimal State Estimation: Kalman, H∞, and Nonlinear App
 
 <em>Also consider the [Errata](https://academic.csuohio.edu/simond/estimation/errata.pdf)</em>
 
-<h1>Textbooks about linear state-space:</h1>
+<h1>Textbooks about linear state-space</h1>
 
 [2] DeCarlo, R. A. (1989). Linear systems: A state variable approach with numerical implementation. London: Prentice-Hall International.
 
+<h1>Textbooks with applications to tracking</h1>
 
 <h1>Unscented Kalman Filter</h1>
 
