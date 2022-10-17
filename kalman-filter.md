@@ -47,7 +47,7 @@ The equations of the Kalman filter consist of five major steps:
 
 <h4>Update state covariance</h4>
 
-\\[ \mathbf{P}(k) = (\mathbf{I} - \mathbf{K}(k) \mathbf{C}(k)) \mathbf{P}(k\|k-1)\\]
+\\[ \mathbf{P}(k) = \bigl(\mathbf{I} - \mathbf{K}(k) \mathbf{C}(k) \bigl) \mathbf{P}(k) \bigl(\mathbf{I} - \mathbf{K}(k) \mathbf{C}(k) \bigl)^T + \mathbf{K}(k) \mathbf{R}(k) \mathbf{K}(k)^T  \\]
 
 <h1>Further reading</h1>
 The Kalman filter is named after the publication of Rudolf Emil Kalman who presented his approach in 1960 in the paper "A New Approach to Linear Filtering and Prediction Problems” [1]. However, the idea was described by other authors several years earlier. Nevertheless, the spread of the concept is attributed to Kalman.
