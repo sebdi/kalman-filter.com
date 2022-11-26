@@ -3,7 +3,7 @@ layout: post
 title:  "Estimating the state of a dc motor"
 description: This example will focus on estimating the angular position, angular velocity and armature current of a DC motor with a linear Kalman filter.
 permalink: /estimating-the-state-of-a-dc-motor/
-date:   2022-07-08 00:00:00 +0000
+date:   2022-11-26 00:00:00 +0000
 categories: applications
 ---
 
@@ -18,6 +18,9 @@ The electrical part is modeled with the electrical equivalent circuit and the ki
 <h3>Electrical system model</h3>
 The electrical part consists of the armature resistance \\( R \\) and the inductance of the armature winding \\( L \\) which are connected in series, and the electromechanical energy converter \\( M \\)  which is the DC motor. 
 The circuit is operated by the voltage source \\( V_s \\).
+<p align="center">
+<img src="/assets/images/dc_motor/electrical-system-model-dc-motor.png" title="Electrical system model of a DC motor" width="500"/>
+</p>
 The following equation can be determined using the mesh equation
 
 \\[ V_s = L \dot{i} + R i - V_e \.\\]
@@ -33,12 +36,15 @@ that we will later transfer to the state-space.
 <h3>Kinematic system model</h3>
 For the mechanical part, the DC motor is described by the physics of [rotations around a fixed axis](https://en.wikipedia.org/wiki/Rotation_around_a_fixed_axis).
 It is assumed that the mechanical shaft and the rotated body, i.e. the actuated load, are known and subsumed under the angular mass \\(J\\).
+<p align="center">
+<img src="/assets/images/dc_motor/kinematic-system-model-dc-motor.png" title="Kinematic system model of a DC motor" width="300"/>
+</p>
 The relationship between the angular acceleration \\(\ddot{\theta}\\) caused by the net torque is then as follows
 
 \\[ J \ddot{\theta} = m_m - m_R - m_L \. \\]
 
 Where \\(m_m\\) is the motor torque.
-The friction torque \\( m_R \\) and load torque \\( m_L \\) counteract to the motor torque \\(m_m\\) .
+The friction torque \\( m_R \\) and load torque \\( m_L \\) counteract to the motor torque \\(m_m\\).
 For the motor torque \\(m_m\\) there is a linear relationship to the current \\( m_m = K_T i \\) that is adjusted by the factor \\( K_T\\) which is referred to as [motor torque constant](https://en.wikipedia.org/wiki/Motor_constants). 
 The friction torque \\( m_R \\) is proportional to the angular velocity \\( m_R = b \dot{\theta} \\) multiplied by the coefficient \\( b\\).
 The torque \\( m_L \\) is the mechanical load torque that is \\( m_L = 0 \\), if the DC motor is operated without payload, but we will assume later a unknown load torque.
