@@ -1,8 +1,10 @@
 ---
 layout: post
 title:  "Cubature Kalman Filter"
+description: The Cubature Kalman Filter (CKF) is the newest representative of the sigma-point methods and is based on the Cubature rule.
 permalink: /cubature-kalman-filter/
 date:   2022-11-01 00:00:00 +0000
+description: The Cubature Kalman Filter (CKF) is the newest representative of the sigma-point methods.
 categories: kalman-filter
 ---
 

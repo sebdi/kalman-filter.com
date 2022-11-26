@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Normalized Estimation Error Squared (NEES)"
+description: A desired property of a state estimator is that it is able to indicate the quality of the estimate correctly. This is called consistency of a state estimator.
 permalink: /normalized-estimation-error-squared/
 date:   2022-09-11 00:00:00 +0000
 categories: kalman-filter
@@ -21,7 +22,7 @@ For this purpose, a normalization of the estimation error \\( \tilde{\mathbf{x}}
 
 \\[ \epsilon (k) = \tilde{\mathbf{x}}(k\|k)^T \mathbf{P}(k\|k)^{-1} \tilde{\mathbf{x}}(k\|k) \ .\\]
 
-The quantity \\( \epsilon (k) \\)  is chi-squared distributed with \\( \text{dim}( \tilde{\mathbf{x}}(k) )) = n_x \\) degrees of freedom.
+The quantity \\( \epsilon (k) \\)  is chi-squared distributed with \\( \text{dim}( \tilde{\mathbf{x}}(k)) = n_x \\) degrees of freedom.
 
 *A Brief explanation why chi-squared distributed: The sum of standard normally distributed squared random variables is chi-squared distributed. 
 Under the assumption that \\( \mathbf{x}(k) \\) and \\( \hat{\mathbf{x}}(k)\\) are standard normally distributed random variables, the estimation error \\( \tilde{\mathbf{x}} \\) is a standard normal random variable, too.
@@ -91,6 +92,20 @@ In practice, it is therefore recommended to perform the [Normalized Innovation S
 However, the NEES hypothesis test offers a deeper insight because the entire state vector is used and helps among other things in debugging within an application. 
 This is based on the idea that if the implementation does not work correctly in a simulation with the "truth model", why should it work in reality?
 
+
+From Salzmann: Some Aspects of Kalman Filtering
+
+Mehra and Peschon 1971
+
+The innovation is a important quantity this was pointed out by Kalman,1960
+
+In fact the compelte filter can be derived completely based on the innovation sequence by Kailath, 1968
+
+Monitoring the innovation can also be used for fault detection. Survey by Willsky 1976.
+
+The innovation sequence offers a possible approach to adaptive filtering. Survy Chin 1979
+
+Ch-square test Bendat and Piersol 1986
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll

@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Normalized Innovation Squared (NIS)"
+description: The Normalized Innovation Squared (NIS) metric allows to check whether the Kalman filter is consistent with the residual and the innovation covariance matrix.
 permalink: /normalized-innovation-squared/
 date:   2022-09-25 00:00:00 +0000
 categories: kalman-filter

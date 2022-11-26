@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Estimating the state of a dc motor"
+description: This example will focus on estimating the angular position, angular velocity and armature current of a DC motor with a linear Kalman filter.
 permalink: /estimating-the-state-of-a-dc-motor/
 date:   2022-07-08 00:00:00 +0000
 categories: applications

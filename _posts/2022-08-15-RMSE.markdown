@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Root Mean Square Error (RMSE)"
+description: The root mean square error (RMSE), which is a widely used quality measure, is suitable to evaluate the performance of state estimators.
 permalink: /root-mean-square-error/
 date:   2022-09-25 00:00:00 +0000
 categories: kalman-filter
