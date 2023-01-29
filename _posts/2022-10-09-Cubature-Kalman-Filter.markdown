@@ -9,12 +9,10 @@ categories: kalman-filter
 ---
 
 The Cubature Kalman Filter (CKF) is the newest representative of the sigma-point methods.
-The selection of sigma points in the CKF is slightly different from the Unscented Kalman Filter (UKF) and is based on the Cubature rule.
+The selection of sigma points in the CKF is slightly different from the Unscented Kalman Filter (UKF) and is based on the Cubature rule which was derived by Arasaratnam and Haykin [1].
 As for the UKF, the CKF follows the idea that it is easier to approximate a probability function than to linearize a nonlinear function.
 
 Essentially, the challenge in nonlinear state estimation is that the involuted nonlinear functions result in, for example, previously Gaussian distributed variables no longer being Gaussian distributed. Mathematically speaking, the cause is that an integral must be computed over the nonlinear function which is not analytically possible for most cases. Since Kalman filters only consider the first two statistical moments, it is sufficient to obtain only the first two moments as long as they correspond to the first two moments of the true distribution function.
-
-A method which is able to do this is the Curbatur rule which was derived by Arasaratnam and Haykin [1].
 
 <h3>Cubature Rule</h3>
 Explained in short words, the idea of the Cubature rule is to transform the state defined in Cartesian space into a spherical-radial coordinate system and to use the [Gaussian quadrature](https://en.wikipedia.org/wiki/Gaussian_quadrature) there.
