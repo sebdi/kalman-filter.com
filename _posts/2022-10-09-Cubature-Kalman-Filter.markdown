@@ -3,7 +3,7 @@ layout: post
 title:  "Cubature Kalman Filter"
 description: The Cubature Kalman Filter (CKF) is the newest representative of the sigma-point methods and is based on the Cubature rule.
 permalink: /cubature-kalman-filter/
-date:   2022-11-01 00:00:00 +0000
+date:   2023-01-29 00:00:00 +0000
 description: The Cubature Kalman Filter (CKF) is the newest representative of the sigma-point methods.
 categories: kalman-filter
 ---
@@ -21,13 +21,14 @@ Explained in short words, the idea of the Cubature rule is to transform the stat
 It results in the following calculation rules for the sigma points.
 For \\( i=1,2,...,n_x \\) with \\( \text{dim}( \mathbf{x} ) = n_x \\) the sigma points are
 
-\\[ \mathcal{X}^{(i)}(k-1) = \mathbf{x}(k-1\|k-1) + \sqrt{n_x} \bigl(\mathbf{P}^{\frac{1}{2}}(k-1\|k-1)\bigl) \\]
+\\[ \mathcal{X}^{(i)}(k-1) = \mathbf{x}(k-1\|k-1) + \sqrt{n_x} \bigl(\mathbf{P}^{\frac{1}{2}}(k-1\|k-1)\bigl)_i \\]
 
-and the corresponding sigma points
+and
 
-\\[ \mathcal{X}^{(i+n_x)}(k-1) = \mathbf{x}(k-1\|k-1) - \sqrt{n_x} \bigl(\mathbf{P}^{\frac{1}{2}}(k-1\|k-1)\bigl) \\]
+\\[ \mathcal{X}^{(i+n_x)}(k-1) = \mathbf{x}(k-1\|k-1) - \sqrt{n_x} \bigl(\mathbf{P}^{\frac{1}{2}}(k-1\|k-1)\bigl)_i \\]
 
-with the weight
+where the parenthesis \\( \bigl( \cdot \bigl)_i \\) indicates that the i-column of the matrix is to be used. 
+The corresponding weight is computed with
 
 \\[ W_i = \frac{1}{2n_x} .\\] 
 
@@ -39,17 +40,25 @@ The predicted covariance matrix of the predicted state results insignificantly d
 
 \\[ \mathbf{P}(k\|k-1) = \sum^{2n_x}_{i=1} \bigl( \mathbf{f}(\mathcal{X}^{(i)}(k-1))-\mathcal{x}(k\|k-1) \bigl) \bigl( \mathbf{f}(\mathcal{X}^{(i)}(k-1))-\mathcal{x}(k\|k-1) \bigl)^T W_i + \mathbf{Q}_d(k-1)  .\\]
 
+For the correction step, another set of sigma points must be calculated from the predicted state \\( \mathbf{x}(k\|k-1) \\) and the predicted covariance \\( \mathbf{P}(k\|k-1) \\),
+
+\\[ \mathcal{X}^{(i)}(k) = \mathbf{x}(k\|k-1) + \sqrt{n_x} \bigl(\mathbf{P}^{\frac{1}{2}}(k\|k-1)\bigl)_i \\]
+
+and
+
+\\[ \mathcal{X}^{(i+n_x)}(k) = \mathbf{x}(k\|k-1) - \sqrt{n_x} \bigl(\mathbf{P}^{\frac{1}{2}}(k\|k-1)\bigl)_i  .\\]
+
 To perform the correction step, the measurement vector must be predicted
 
-\\[ \mathbf{y}(k\|k-1) = \sum^{2n}_{i=1} \mathbf{h}(\mathcal{X}^{(i)}(k)) W_i  .\\]
+\\[ \mathbf{y}(k\|k-1) = \sum^{2n_x}_{i=1} \mathbf{h}(\mathcal{X}^{(i)}(k)) W_i  .\\]
 
 With the help of the intermediate variables, cross covariance
 
-\\[ \mathbf{P}\_{xy}(k\|k-1) = \sum^{2n}_{i=1} \bigl( \mathcal{X}^{(i)} - \mathbf{x}(k\|k-1)  \bigl) \bigl( \mathcal{X}^{(i)} - \mathbf{x}(k\|k-1)  \bigl)^T W_i  \\]
+\\[ \mathbf{P}\_{xy}(k\|k-1) = \sum^{2n_x}_{i=1} \bigl( \mathcal{X}^{(i)}(k) - \mathbf{x}(k\|k-1)  \bigl) \bigl( \mathbf{h}(\mathcal{X}^{(i)}(k)) - \mathbf{y}(k\|k-1)  \bigl)^T W_i  \\]
 
 and innovation
 
-\\[ \mathbf{S}(k\|k-1) = \sum^{2n}_{i=1} \bigl( \mathbf{h}(\mathcal{X}^{(i)}(k))- \mathbf{y}(k\|k-1) \bigl) W_i + \mathbf{R}(k)  \\]
+\\[ \mathbf{S}(k\|k-1) = \sum^{2n_x}_{i=1} W_i \bigl( \mathbf{h}(\mathcal{X}^{(i)}(k))- \mathbf{y}(k\|k-1) \bigl) \bigl( \mathbf{h}(\mathcal{X}^{(i)}(k))- \mathbf{y}(k\|k-1) \bigl)^T + \mathbf{R}(k)  \\]
 
 the state 
 
