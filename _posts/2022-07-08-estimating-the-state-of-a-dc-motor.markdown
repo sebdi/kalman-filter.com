@@ -29,7 +29,7 @@ The DC motor induces the voltage \\( V_e \\) that can be regarded linear to the 
 
 Since \\(  L \dot{i} \\)  is a differentiating term, we solve for the same and get the following first order differential equation
 
-\\[ \dot{i} = \frac{1}{L} V - \frac{R}{L} i - \frac{K_e}{L} \dot{\theta} \\]
+\\[ \dot{i} = \frac{1}{L} V_s - \frac{R}{L} i - \frac{K_e}{L} \dot{\theta} \\]
 
 that we will later transfer to the state-space.
 
@@ -53,28 +53,32 @@ Since \\( \ddot{\theta} \\) is the term with the highest differentiation, we sol
 \\[ \ddot{\theta} = \frac{K_T i}{J} - \frac{b}{J} \dot{\theta} - \frac{m_L}{J} \. \\]
 
 <h3>Combined system model</h3>
-The two upper equations can now be transferred into one state-space model.
-For this purpose, the following states are defined \\( \mathbf{x}_1 = \theta \\), \\( \mathbf{x}_2 = \dot{\theta} \\), \\( \mathbf{x}_3 = m_L \\)  and \\( \mathbf{x}_4 = i \\).
-In full form
-\\[ \mathbf{x} = \begin{bmatrix} \theta \\\\ \dot{\theta} \\\\ m_L \\\\ i \end{bmatrix} \. \\]
-Furthermore, we model that the system is only controled by the voltage supply, i.e., \\(\mathbf{u}(t) =  V_s \\) and the derivative of the load torque \\( m_L \\) is a unknown disturbance to the system with \\( \dot{\mathbf{x}}_3 = \mathbf{z}(t) \\).
-The continuous state-space model becomes
+The two upper differential equations can now be transferred into one combined state-space model of the form
 
-\\[ \dot{\mathbf{x}}(t) = \mathbf{A} \mathbf{x}(t) + \mathbf{B} \mathbf{u}(t) + \mathbf{G} \mathbf{z}(t) \\]
+\\[ \dot{\mathbf{x}}(t) = \mathbf{A} \mathbf{x}(t) + \mathbf{B} \mathbf{u}(t) + \mathbf{G} \mathbf{z}(t) \. \\]
 
-with the following matrices
+For this purpose, the kinematic differential equation of second order gets converted into a first-order differential equation by defining \\( x_1:=\theta \\) as the first state variable and \\( x_2:=\dot{\theta} \\) as its derivative.
+Additionally, we model the derivative of the load torque \\( m_L \\) as an unknown disturbance
 
-\\[ \mathbf{A} = \begin{bmatrix} 0 & 1 & 0 & 0\\\\ 0 & -\frac{b}{J} & -\frac{1}{J} &\frac{K_T}{J} \\\\ 0 & 0 & 0 & 0 \\\\ 0 & -\frac{K_e}{L} & 0 & -\frac{R}{L}\end{bmatrix} , \\]
+\\[ \dot{m_L} = z(t), \\]
 
-\\[ \mathbf{B} = \begin{bmatrix} 0 \\\\ 0 \\\\ 0 \\\\ \frac{1}{L}\end{bmatrix} \. \\]
+which means  we define the load torgue as a third state variable \\( x_3:=m_L \\). 
+For the first-order electrical differential equation, we can directly define \\( x_4:=i \\) as the fourth and last state variable.
+Furthermore, the combined system is only controlled by the voltage supply, i.e.,
+
+\\[ \mathbf{u}(t) =  V_s. \\]
+
+Arranging everything into state-space form, we get
+
+\\[ \underbrace{\begin{bmatrix} \dot{\theta} \\\\ \ddot{\theta} \\\\ \dot{m_L} \\\\ \dot{i} \end{bmatrix}}\_{= \dot{\mathbf{x}}(t)}= \underbrace{\begin{bmatrix} 0 & 1 & 0 & 0\\\\ 0 & -\frac{b}{J} & -\frac{1}{J} &\frac{K_T}{J} \\\\ 0 & 0 & 0 & 0 \\\\ 0 & -\frac{K_e}{L} & 0 & -\frac{R}{L}\end{bmatrix}}\_{=A}   \underbrace{\begin{bmatrix} \theta \\\\ \dot{\theta} \\\\ m_L \\\\ i \end{bmatrix}}\_{=\mathbf{x}(t)}+\underbrace{\begin{bmatrix} 0 \\\\ 0 \\\\ 0 \\\\ \frac{1}{L}\end{bmatrix}}\_{=\mathbf{B}} \mathbf{u}(t) + \underbrace{\begin{bmatrix} 0 \\\\ 0 \\\\ 1 \\\\ 0\end{bmatrix}}\_{=\mathbf{G}} \mathbf{z}(t) \. \\]
 
 For the measurement equation
 
-\\[ \mathbf{y}(t) =  \mathbf{C} \mathbf{x}(t) + \mathbf{v}(t)\\]
+\\[ \mathbf{y}(t) =  \mathbf{C} \mathbf{x}(t) + \mathbf{v}(t), \\]
 
-let's assume we measure the angular positions with an absolute encoder
+we assume we measure the angular position  \\( \theta = x_1 \\) with an absolute encoder, and from this, the measurement matrix follows
 
-\\[ \mathbf{C} = \begin{bmatrix} 1 & 0 & 0 & 0\end{bmatrix} \ . \\]
+\\[ \mathbf{C} = \begin{bmatrix} 1 & 0 & 0 & 0\end{bmatrix}. \\]
 
 *Some notes, the choice of state variables is the part of modeling and it is possible for both another choice and another order.
 When modeling the load torque \\( m_L \\), it was assumed that the load torque \\( m_L \\) is unknown and noisy.
