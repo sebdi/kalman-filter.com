@@ -51,6 +51,29 @@ Ad=big(1:3,1:3);
 bd=big(1:3,4);
 {% endhighlight %}
 
+<h3>Matrix Fraction Decomposition</h3>
+In a similar way, \\( \mathbf{Q}_d \\) can also be calculated via a matrix exponential function that is called Matrix Fraction Decomposition [1]:
+
+\\[ \begin{bmatrix}\mathbf{A}_d & \mathbf{Q}_d \bigl( \mathbf{A}^{T}_d \bigr)^{-1} \\\\ \mathbf{0} & \bigl( \mathbf{A}^{T}_d \bigr)^{-1}\end{bmatrix} = e^{ \begin{bmatrix}\mathbf{A} & \mathbf{G} \mathbf{Q} \mathbf{G}^T \\\\ \mathbf{0} & - \mathbf{A}^T\end{bmatrix} \cdot T_s} \\]
+
+The matrix \\( \mathbf{Q}_d \\) can be computed via
+
+\\[ \mathbf{Q}_d =  \mathbf{Q}_d \bigl( \mathbf{A}^{T}_d \bigr)^{-1} \mathbf{A}^{T}_d \\]
+
+For exampel for a system with \\( \mathbf{A}_{3 \times 3}, \mathbf{G}\_{1 \times 3} \\)
+
+{% highlight matlab %}
+big=expm([A G*q*G;zeros(3) -A']*Ts);
+Ad=big(1:3,1:3);
+Qd=big(1:3,4:6) * Ad';
+{% endhighlight %}
+
+<h3>References</h3>
+
+[1] Särkkä, S., & Solin, A. (2019). Applied Stochastic Differential Equations (Institute of Mathematical Statistics Textbooks). Cambridge: Cambridge University Press. doi:10.1017/9781108186735
+
+[2] C. Van Loan, "Computing integrals involving the matrix exponential," in IEEE Transactions on Automatic Control, vol. 23, no. 3, pp. 395-404, June 1978, doi: 10.1109/TAC.1978.1101743.
+
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
 [jekyll-talk]: https://talk.jekyllrb.com/
