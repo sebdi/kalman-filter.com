@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Kalman filter
+description: The Kalman filter is a recursive method to estimate the state of a linear system with additive process noise.
 permalink: /linear-kalman-filter/
 ---
 The Kalman filter is a recursive method to estimate the state of a linear system with additive process noise.
