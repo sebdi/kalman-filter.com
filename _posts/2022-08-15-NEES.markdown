@@ -92,20 +92,30 @@ In practice, it is therefore recommended to perform the [Normalized Innovation S
 However, the NEES hypothesis test offers a deeper insight because the entire state vector is used and helps among other things in debugging within an application. 
 This is based on the idea that if the implementation does not work correctly in a simulation with the "truth model", why should it work in reality?
 
+<h3>References</h3>
+For more comprehensive insights, Salzmann’s work offers extensive explanations and further literature on this topic [1].
 
-From Salzmann: Some Aspects of Kalman Filtering
+In our discussion on the performance analysis of Kalman filters, we refer to Mehra and Peschon's 1971 work, which emphasizes the analysis of the innovation sequence in the time domain to assess filter efficiency [2].
 
-Mehra and Peschon 1971
+The importance of the innovation sequence was first highlighted by Kalman in 1960, and further explored by Kailath in 1968, who showed that the entire filter could be derived from it [3].
 
-The innovation is a important quantity this was pointed out by Kalman,1960
+This sequence also plays a crucial role in fault detection, as noted by Willsky in 1976 [4], and in adaptive filtering, as discussed in Chin's 1979 survey [5].
 
-In fact the compelte filter can be derived completely based on the innovation sequence by Kailath, 1968
+Additionally, the statistical properties of the innovation sequence are verified using the Chi-square goodness-of-fit test to ensure normal distribution, as demonstrated by Bendat and Piersol in 1986 [6].
 
-Monitoring the innovation can also be used for fault detection. Survey by Willsky 1976.
 
-The innovation sequence offers a possible approach to adaptive filtering. Survy Chin 1979
+[1] Salzmann, Martin A. Some aspects of Kalman filtering. Fredericton, N.B: Dept. of Surveying Engineering, University of New Brunswick, 1988.
 
-Ch-square test Bendat and Piersol 1986
+[2] Mehra, R.K., and J. Peschon (1971). An innovations approach to fault detection and diagnosis in dynamic systems. Automatica, Vol. 7, pp. 637-640.
+
+[3] Kailath, T. (1968). An innovations approach to least-squares estimation Part I: Linear filtering in additive white noise. IEEE-Trans. on Automatic Control, Vol. IEEE-AC 13(6), pp.646-655.
+
+[4] Willsky, A.S., (1976). A survey of design methods for failure detection in dynamic systems. Automatica, Vol12, pp.601-611.
+
+[5] Chin, L. (1979). Advances in adaptive filtering. In: Control and Dynamic Systems, Vol. 15, Ed. C.T. Leondes, Academic Press, New York.
+
+[6] Bendat, J.S. and A.G. Piersol (1986). Random Data: Analysis and Measurement Procedures. 2nd ed.,Wiley-Interscience, New York.
+
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
