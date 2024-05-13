@@ -93,7 +93,7 @@ However, the NEES hypothesis test offers a deeper insight because the entire sta
 This is based on the idea that if the implementation does not work correctly in a simulation with the "truth model", why should it work in reality?
 
 <h3>References</h3>
-The text book from Yaakov Bar-Shalom et al. <a href="https://amzn.to/3UWb4Rx" onclick="fathom.trackEvent('NEES - Amazon - Bar-Shalom');">Estimation with Applications to Tracking and Navigation: Theory, Algorithms and Software</a> is a incredibly useful reference.
+The text book from Yaakov Bar-Shalom et al. <a href="https://amzn.to/3UWb4Rx" onclick="fathom.trackEvent('NEES - Amazon - Bar-Shalom');">Estimation with Applications to Tracking and Navigation: Theory, Algorithms and Software</a> is an incredibly useful reference.
 
 For more comprehensive insights, Salzmann’s work offers extensive explanations and further literature on this topic [1].
 
