@@ -180,10 +180,8 @@ Moreover, the mean of the NEES is close to 4 which is the degree of freedom of t
 <img src="/assets/images/dc_motor/NEES.png" title="NEES"/>
 </p>
 
-<h2>Source Code</h2>
-The author is working on an extended code base which also includes the system shown above. 
-For now, the code can only be made available after completing the larger code base. 
-Stay tuned!
+<h3>References</h3>
+The text book from Yaakov Bar-Shalom et al. <a href="https://amzn.to/3UWb4Rx" onclick="fathom.trackEvent('DC Motor - Amazon - Bar-Shalom');">Estimation with Applications to Tracking and Navigation: Theory, Algorithms and Software</a> is an incredibly useful reference.
 
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
