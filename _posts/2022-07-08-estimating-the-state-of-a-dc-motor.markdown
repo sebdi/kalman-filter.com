@@ -52,7 +52,7 @@ Since \\( \ddot{\theta} \\) is the term with the highest differentiation, we sol
 
 \\[ \ddot{\theta} = \frac{K_T i}{J} - \frac{b}{J} \dot{\theta} - \frac{m_L}{J} \. \\]
 
-<h3>Combined system model</h3>
+<h3>Combined DC motor model</h3>
 The two upper differential equations can now be transferred into one combined state-space model of the form
 
 \\[ \dot{\mathbf{x}}(t) = \mathbf{A} \mathbf{x}(t) + \mathbf{B} \mathbf{u}(t) + \mathbf{G} \mathbf{z}(t) \. \\]
