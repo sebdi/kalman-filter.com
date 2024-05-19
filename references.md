@@ -17,7 +17,7 @@ Simon, Daniel. (2006). <a href="https://amzn.to/4dQ02or" onclick="fathom.trackEv
 DeCarlo, R. A. (1989). <a href="https://amzn.to/3QSdvlF" onclick="fathom.trackEvent('References - Amazon - DeCarlo');">Linear systems: A state variable approach with numerical implementation.</a> London: Prentice-Hall International.
 
 <h1>Textbooks with applications to tracking</h1>
-Yaakov Bar-Shalom, X.-Rong Li, Thiagalingam Kirubarajan (2001). <a href="https://amzn.to/4auJSO6" onclick="fathom.trackEvent('References - Amazon - Bar-Shalom');">Estimation with Applications to Tracking and Navigation: Theory, Algorithms and Software.</a>  John Wiley & Sons.
+Yaakov Bar-Shalom, X.-Rong Li, Thiagalingam Kirubarajan (2001). <a href="https://amzn.to/3UPmvJj" onclick="fathom.trackEvent('References - Amazon - Bar-Shalom');">Estimation with Applications to Tracking and Navigation: Theory, Algorithms and Software.</a>  John Wiley & Sons.
 
 <h1>Unscented Kalman Filter</h1>
 S. J. Julier and J. K. Uhlmann, "Unscented filtering and nonlinear estimation," in Proceedings of the IEEE, vol. 92, no. 3, pp. 401-422, March 2004, doi: 10.1109/JPROC.2003.823141.
