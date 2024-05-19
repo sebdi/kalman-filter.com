@@ -82,7 +82,9 @@ The Unscented Transformation is fascinating and is a fundamental contribution to
 A major disadvantage of the UKF that there is a tuning parameter with W. 
 
 <h3>References</h3>
-[1] Julier, Simon J.; Uhlmann, Jeffrey K. (1997). "New extension of the Kalman filter to nonlinear systems" (PDF). In Kadar, Ivan (ed.). Signal Processing, Sensor Fusion, and Target Recognition VI. Proceedings of SPIE. Vol. 3. pp. 182–193. 
+[1] Julier, Simon J.; Uhlmann, Jeffrey K. (1997). "New extension of the Kalman filter to nonlinear systems" (PDF). In Kadar, Ivan (ed.). Signal Processing, Sensor Fusion, and Target Recognition VI. Proceedings of SPIE. Vol. 3. pp. 182–193.
+
+[2] Chandra, Kumar Pakki & Gu, Da-Wei. (2019). <a href="https://amzn.to/4dPedtG" onclick="fathom.trackEvent('UKF - Amazon - Chandra');">Nonlinear Filtering: Methods and Applications</a>. 10.1007/978-3-030-01797-2. 
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll

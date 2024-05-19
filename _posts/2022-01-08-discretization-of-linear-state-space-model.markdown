@@ -70,7 +70,7 @@ Qd=big(1:3,4:6) * Ad';
 
 <h3>References</h3>
 
-[1] Särkkä, S., & Solin, A. (2019). Applied Stochastic Differential Equations (Institute of Mathematical Statistics Textbooks). Cambridge: Cambridge University Press. doi:10.1017/9781108186735
+[1] Särkkä, S., & Solin, A. (2019). <a href="https://amzn.to/4auJSO6" onclick="fathom.trackEvent('Discretization - Amazon - Bar-Shalom');">Applied Stochastic Differential Equations (Institute of Mathematical Statistics Textbooks).</a> Cambridge: Cambridge University Press. doi:10.1017/9781108186735
 
 [2] C. Van Loan, "Computing integrals involving the matrix exponential," in IEEE Transactions on Automatic Control, vol. 23, no. 3, pp. 395-404, June 1978, doi: 10.1109/TAC.1978.1101743.
 

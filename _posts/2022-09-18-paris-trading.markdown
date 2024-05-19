@@ -62,9 +62,9 @@ Implementing this strategy requires a solid understanding of both the Kalman fil
 
 [5] Z. Zhao and D. P. Palomar, "Mean-Reverting Portfolio With Budget Constraint," in IEEE Transactions on Signal Processing, vol. 66, no. 9, pp. 2342-2357, 1 May1, 2018, doi: 10.1109/TSP.2018.2799193. https://arxiv.org/pdf/1701.05016.pdf
 
-[6] Vidyamurthy G. <a href="https://amzn.to/3QQWFn5" onclick="fathom.trackEvent('Pairs trading - Amazon - Vidyamurthy');">Pairs Trading : Quantitative Methods and Analysis.</a> Hoboken N.J: J. Wiley; 2004.
+[6] Vidyamurthy G. <a href="https://amzn.to/44Sb6gK" onclick="fathom.trackEvent('Pairs trading - Amazon - Vidyamurthy');">Pairs Trading : Quantitative Methods and Analysis.</a> Hoboken N.J: J. Wiley; 2004.
 
-[7] Tim Leung and Xin Li, <a href="https://amzn.to/3KcVnyZ" onclick="fathom.trackEvent('Pairs trading - Amazon - Vidyamurthy');">Optimal Mean Reversion Trading: Mathematical Analysis and Practical Applications.</a> WSPC. 2015
+[7] Tim Leung and Xin Li, <a href="https://amzn.to/3yoY91z" onclick="fathom.trackEvent('Pairs trading - Amazon - Vidyamurthy');">Optimal Mean Reversion Trading: Mathematical Analysis and Practical Applications.</a> WSPC. 2015
 
 [8] Spectral factorization: https://www.youtube.com/watch?v=HXeT5WexXPs Poor88
 

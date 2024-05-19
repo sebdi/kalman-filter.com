@@ -181,7 +181,7 @@ Moreover, the mean of the NEES is close to 4 which is the degree of freedom of t
 </p>
 
 <h3>References</h3>
-The text book from Yaakov Bar-Shalom et al. <a href="https://amzn.to/3UWb4Rx" onclick="fathom.trackEvent('DC Motor - Amazon - Bar-Shalom');">Estimation with Applications to Tracking and Navigation: Theory, Algorithms and Software</a> is an incredibly useful reference.
+The text book from Yaakov Bar-Shalom et al. <a href="https://amzn.to/3UPmvJj" onclick="fathom.trackEvent('DC Motor - Amazon - Bar-Shalom');">Estimation with Applications to Tracking and Navigation: Theory, Algorithms and Software</a> is an incredibly useful reference.
 
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
