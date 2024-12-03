@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Multiple Model State Estimation"
+description: Multiple Model State Estimation allows to use more than one model or a mixture of several models.
 permalink: /multiple-model-state-estimation/
 date:   2022-10-17 00:00:00 +0000
 categories: kalman-filter

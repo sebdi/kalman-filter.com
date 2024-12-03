@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to tune a Kalman-Filter?"
-#description: The Cubature Kalman Filter (CKF) is the newest representative of the sigma-point methods and is based on the Cubature rule.
+description: Tuning a Kalman filter involves adjusting its parameters to optimize performance, specifically the process and measurement noise covariances.
 permalink: /how-to-tune-a-kalman-filter/
 date:   2024-09-03 00:00:00 +0000
 categories: kalman-filter
