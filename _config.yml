@@ -15,7 +15,6 @@
 # in the templates via {{ site.myvariable }}.
 title: Kalman filter for professionals
 email: s.dingler+kf@gmail.com
-description: The Kalman filter is a recursive method to estimate the state of a linear system with additive process noise.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://kalman-filter.com" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  sebdi

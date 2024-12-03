@@ -55,7 +55,7 @@ The confidence interval \\( [r_1,r_2] \\) can be calculated with the inverse cum
 Most often, one can test the hypothesis by plotting the \\( \text{NEES}( \epsilon(k) ) \\) and the confidence interval \\( [r_1,r_2] \\) and check visually if the NEES is inside or outside. 
 
 <p align="center">
-<img src="/assets/images/dc_motor/NEES.png" title="Normalized Estimation Error Squared (NEES)"/>
+<img src="/assets/images/dc_motor/NEES.png" alt="Images shows an example of ANEES with 4 degrees of freedom" title="Normalized Estimation Error Squared (NEES)"/>
 <center>Figure 1: Example of ANEES with 4 degrees of freedom.</center>
 </p>
 

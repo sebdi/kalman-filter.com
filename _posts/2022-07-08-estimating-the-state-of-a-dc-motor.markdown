@@ -19,7 +19,7 @@ The electrical part is modeled with the electrical equivalent circuit and the ki
 The electrical part consists of the armature resistance \\( R \\) and the inductance of the armature winding \\( L \\) which are connected in series, and the electromechanical energy converter \\( M \\)  which is the DC motor. 
 The circuit is operated by the voltage source \\( V_s \\).
 <p align="center">
-<img src="/assets/images/dc_motor/electrical-system-model-dc-motor.png" title="Electrical system model of a DC motor" width="500"/>
+<img src="/assets/images/dc_motor/electrical-system-model-dc-motor.png" alt="The electrical system model of a DC motor." title="Electrical system model of a DC motor" width="500"/>
 </p>
 The following equation can be determined using the mesh equation
 
@@ -37,7 +37,7 @@ that we will later transfer to the state-space.
 For the mechanical part, the DC motor is described by the physics of [rotations around a fixed axis](https://en.wikipedia.org/wiki/Rotation_around_a_fixed_axis).
 It is assumed that the mechanical shaft and the rotated body, i.e. the actuated load, are known and subsumed under the angular mass \\(J\\).
 <p align="center">
-<img src="/assets/images/dc_motor/kinematic-system-model-dc-motor.png" title="Kinematic system model of a DC motor" width="300"/>
+<img src="/assets/images/dc_motor/kinematic-system-model-dc-motor.png" alt="The kinematic system model of a DC motor." title="Kinematic system model of a DC motor" width="300"/>
 </p>
 The relationship between the angular acceleration \\(\ddot{\theta}\\) caused by the net torque is then as follows
 
@@ -129,7 +129,7 @@ The following results were received by conducting a simulation in MATLAB.
 To make the simulation more lively and realistic, the input voltage is set to 6 V and in the middle of the simulation to 12 V to mock a controller (see the figure below).
 
 <p align="center">
-<img src="/assets/images/dc_motor/u.png" title="input voltage"/>
+<img src="/assets/images/dc_motor/u.png" alt="The image shows the input voltage that is set to 6 V and in the middle of the simulation to 12 V to mock a controller." title="input voltage"/>
 </p>
 
 The next four figures shows the course of the estimate of \\(\mathbf{x}\\) and the ground truth of \\(\mathbf{x}\\).
@@ -138,19 +138,19 @@ For the second state \\(x_2\\), i.e. the angular velocity \\( \dot{\theta} \\), 
 Qualitative can be evaluated for all states that the estimate is very close to the true value.
 
 <p align="center">
-<img src="/assets/images/dc_motor/x1.png" title="x1"/>
+<img src="/assets/images/dc_motor/x1.png" alt="The image shows the first state over time." title="x1"/>
 </p>
 
 <p align="center">
-<img src="/assets/images/dc_motor/x2.png" title="x2"/>
+<img src="/assets/images/dc_motor/x2.png" alt="The image shows the second state over time." title="x2"/>
 </p>
 
 <p align="center">
-<img src="/assets/images/dc_motor/x3.png" title="x3"/>
+<img src="/assets/images/dc_motor/x3.png" alt="The image shows the third state over time." title="x3"/>
 </p>
 
 <p align="center">
-<img src="/assets/images/dc_motor/x4.png" title="x4"/>
+<img src="/assets/images/dc_motor/x4.png" alt="The image shows the fourth state over time." title="x4"/>
 </p>
 
 The previous result was mainly qualitative, a widely used quantitative way is to evaluate the estimation error with a metric such as the [Root Mean Square Error (RMSE)](/root-mean-square-error/).
@@ -159,7 +159,7 @@ It can be seen that RMSE for \\( x_1\\)  of the Kalman filter matches the RMSE o
 The main reason is that the measurement noise is very low.
 
 <p align="center">
-<img src="/assets/images/dc_motor/RMSE_x1.png" title="RMSE(x1)"/>
+<img src="/assets/images/dc_motor/RMSE_x1.png" alt="The image shows the RMSE of the first state over time." title="RMSE(x1)"/>
 </p>
 
 Usually the angular velocity \\( \dot{\theta} \\) is used to control a DC motor. 
@@ -168,7 +168,7 @@ In the next figure the RMSE for the derived measurement is also shown.
 It can be clearly seen that the RMSE spikes when the input voltage changes in a jump.
 
 <p align="center">
-<img src="/assets/images/dc_motor/RMSE_x2.png" title="RMSE(x2)"/>
+<img src="/assets/images/dc_motor/RMSE_x2.png" alt="The image shows the RMSE of the second state over time." title="RMSE(x2)"/>
 </p>
 
 As the last step, the correctness of the simulation can be confirmed by the [Normalized Estimation Error Squared (NEES)](/normalized-estimation-error-squared/). 
@@ -177,7 +177,7 @@ The next figure shows the NEES that stays within the confidence interval.
 Moreover, the mean of the NEES is close to 4 which is the degree of freedom of the used state-space system.
 
 <p align="center">
-<img src="/assets/images/dc_motor/NEES.png" title="NEES"/>
+<img src="/assets/images/dc_motor/NEES.png" alt="The image shows the NEES over time." title="NEES"/>
 </p>
 
 <h3>References</h3>
