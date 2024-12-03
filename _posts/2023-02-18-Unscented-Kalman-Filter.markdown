@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Unscented Kalman Filter"
-description: The Unscented Kalman Filter (UKF) is the most known representative of the sigma-point methods.
+description: The Unscented Kalman Filter (UKF) is the most known representative of the sigma-point methods derived by Julier and Uhlmann.
 permalink: /unscented-kalman-filter/
 date:   2023-02-18 00:00:00 +0000
 categories: kalman-filter

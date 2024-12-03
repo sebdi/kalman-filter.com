@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Pairs trading"
-description: Discover how to enhance pairs trading strategies using the Kalman filter.
+description: Discover how to enhance pairs trading or statistical arbitrage strategies using the Kalman filter.
 permalink: /pairs-trading/
 date:   2024-05-10 00:00:00 +0000
 categories: kalman-filter
