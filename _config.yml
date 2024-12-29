@@ -35,5 +35,6 @@ youtube_username: "@Kalman-Filter"
 
 exclude:
   - README.md
+  - merchandise.md
   - .gitignore
  
