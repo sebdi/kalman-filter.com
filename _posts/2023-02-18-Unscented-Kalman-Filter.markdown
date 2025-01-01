@@ -3,7 +3,7 @@ layout: post
 title:  "Unscented Kalman Filter"
 description: The Unscented Kalman Filter (UKF) is the most known representative of the sigma-point methods derived by Julier and Uhlmann.
 permalink: /unscented-kalman-filter/
-date:   2023-02-18 00:00:00 +0000
+date:   2024-02-18 00:00:00 +0000
 categories: kalman-filter
 ---
 
@@ -85,6 +85,9 @@ A major disadvantage of the UKF that there is a tuning parameter with W.
 [1] Julier, Simon J.; Uhlmann, Jeffrey K. (1997). "New extension of the Kalman filter to nonlinear systems" (PDF). In Kadar, Ivan (ed.). Signal Processing, Sensor Fusion, and Target Recognition VI. Proceedings of SPIE. Vol. 3. pp. 182–193.
 
 [2] Chandra, Kumar Pakki & Gu, Da-Wei. (2019). <a href="https://amzn.to/4dPedtG" onclick="fathom.trackEvent('UKF - Amazon - Chandra');">Nonlinear Filtering: Methods and Applications</a>. 10.1007/978-3-030-01797-2. 
+
+<h3>Newsletter</h3>
+<iframe src="https://embeds.beehiiv.com/29a6e516-926f-4340-80b5-8d0ce6c3198e" data-test-id="beehiiv-embed" width="100%" height="320" frameborder="0" scrolling="no" style="border-radius: 4px; border: 2px solid #e5e7eb; margin: 0; background-color: transparent;"></iframe>
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll

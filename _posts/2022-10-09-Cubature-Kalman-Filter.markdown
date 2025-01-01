@@ -3,7 +3,7 @@ layout: post
 title:  "Cubature Kalman Filter"
 description: The Cubature Kalman Filter (CKF) is the newest representative of the sigma-point methods and is based on the Cubature rule.
 permalink: /cubature-kalman-filter/
-date:   2023-01-29 00:00:00 +0000
+date:   2024-01-29 00:00:00 +0000
 categories: kalman-filter
 ---
 
@@ -78,6 +78,9 @@ The disadvantage is that the larger n is, the wider the sigma points are spread 
 [2] D. F. Crouse, "Cubature/unscented/sigma point Kalman filtering with angular measurement models," 2015 18th International Conference on Information Fusion (Fusion), 2015, pp. 1550-1557.
 
 [3] Chandra, Kumar Pakki & Gu, Da-Wei. (2019). <a href="https://amzn.to/4dPedtG" onclick="fathom.trackEvent('Cubature - Amazon - Chandra');">Nonlinear Filtering: Methods and Applications</a>. 10.1007/978-3-030-01797-2. 
+
+<h3>Newsletter</h3>
+<iframe src="https://embeds.beehiiv.com/29a6e516-926f-4340-80b5-8d0ce6c3198e" data-test-id="beehiiv-embed" width="100%" height="320" frameborder="0" scrolling="no" style="border-radius: 4px; border: 2px solid #e5e7eb; margin: 0; background-color: transparent;"></iframe>
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll

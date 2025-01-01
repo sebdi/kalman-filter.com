@@ -3,7 +3,7 @@ layout: post
 title:  "Estimating the state of a dc motor"
 description: This example will focus on estimating the angular position, angular velocity and armature current of a DC motor with a linear Kalman filter.
 permalink: /estimating-the-state-of-a-dc-motor/
-date:   2022-11-26 00:00:00 +0000
+date:   2024-11-26 00:00:00 +0000
 categories: applications
 ---
 
@@ -183,6 +183,8 @@ Moreover, the mean of the NEES is close to 4 which is the degree of freedom of t
 <h3>References</h3>
 The text book from Yaakov Bar-Shalom et al. <a href="https://amzn.to/3UPmvJj" onclick="fathom.trackEvent('DC Motor - Amazon - Bar-Shalom');">Estimation with Applications to Tracking and Navigation: Theory, Algorithms and Software</a> is an incredibly useful reference.
 
+<h3>Newsletter</h3>
+<iframe src="https://embeds.beehiiv.com/29a6e516-926f-4340-80b5-8d0ce6c3198e" data-test-id="beehiiv-embed" width="100%" height="320" frameborder="0" scrolling="no" style="border-radius: 4px; border: 2px solid #e5e7eb; margin: 0; background-color: transparent;"></iframe>
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll

@@ -3,7 +3,7 @@ layout: post
 title:  "Multiple Model State Estimation"
 description: Multiple Model State Estimation allows to use more than one model or a mixture of several models.
 permalink: /multiple-model-state-estimation/
-date:   2022-10-17 00:00:00 +0000
+date:   2024-10-17 00:00:00 +0000
 categories: kalman-filter
 ---
 
@@ -37,6 +37,9 @@ For the IMM approach, S. Dingler's paper goes into more detail and describes the
 [1] X. Rong Li and V. P. Jilkov, "Survey of maneuvering target tracking. Part V. Multiple-model methods," in IEEE Transactions on Aerospace and Electronic Systems, vol. 41, no. 4, pp. 1255-1321, Oct. 2005, doi: 10.1109/TAES.2005.1561886.
 
 [2] Dingler, Sebastian. "State estimation with the Interacting Multiple Model (IMM) method." [arXiv preprint arXiv:2207.04875, 2022](https://arxiv.org/abs/2207.04875).
+
+<h3>Newsletter</h3>
+<iframe src="https://embeds.beehiiv.com/29a6e516-926f-4340-80b5-8d0ce6c3198e" data-test-id="beehiiv-embed" width="100%" height="320" frameborder="0" scrolling="no" style="border-radius: 4px; border: 2px solid #e5e7eb; margin: 0; background-color: transparent;"></iframe>
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll

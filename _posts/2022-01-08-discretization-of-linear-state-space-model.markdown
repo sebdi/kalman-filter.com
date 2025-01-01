@@ -2,7 +2,7 @@
 layout: post
 title:  "Discretization of linear state-space model based on ZOH discretization or Matrix Fraction Decomposition"
 permalink: /discretization-of-linear-state-space-model/
-date:   2022-01-08 00:00:00 +0000
+date:   2024-01-08 00:00:00 +01000
 categories: kalman-filter matlab
 ---
 
@@ -73,6 +73,9 @@ Qd=big(1:3,4:6) * Ad';
 [1] Särkkä, S., & Solin, A. (2019). <a href="https://amzn.to/4auJSO6" onclick="fathom.trackEvent('Discretization - Amazon - Bar-Shalom');">Applied Stochastic Differential Equations (Institute of Mathematical Statistics Textbooks).</a> Cambridge: Cambridge University Press. doi:10.1017/9781108186735
 
 [2] C. Van Loan, "Computing integrals involving the matrix exponential," in IEEE Transactions on Automatic Control, vol. 23, no. 3, pp. 395-404, June 1978, doi: 10.1109/TAC.1978.1101743.
+
+<h3>Newsletter</h3>
+<iframe src="https://embeds.beehiiv.com/29a6e516-926f-4340-80b5-8d0ce6c3198e" data-test-id="beehiiv-embed" width="100%" height="320" frameborder="0" scrolling="no" style="border-radius: 4px; border: 2px solid #e5e7eb; margin: 0; background-color: transparent;"></iframe>
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll

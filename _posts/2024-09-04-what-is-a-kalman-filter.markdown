@@ -75,6 +75,8 @@ Several variations of the Kalman filter exist, including:
 
 The Kalman filter's ability to provide accurate estimates in the presence of noise and uncertainty makes it a fundamental tool in many technological applications and scientific fields.
 
+<h3>Newsletter</h3>
+<iframe src="https://embeds.beehiiv.com/29a6e516-926f-4340-80b5-8d0ce6c3198e" data-test-id="beehiiv-embed" width="100%" height="320" frameborder="0" scrolling="no" style="border-radius: 4px; border: 2px solid #e5e7eb; margin: 0; background-color: transparent;"></iframe>
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
